@@ -53,34 +53,26 @@ ydl_opts = {
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
-        'preferredquality': '192',
-    }],
-}   
-                            
+        'preferredquality': '192',}],}   
+
 @bot.command(pass_context=True)
 async def play(ctx, url):
-    if not ctx.message.author.voice:
-        await ctx.send('you are not connected to a voice channel')
+    if not ctx.message.author.voice: # ถ้าผู้ใช้ไม่ได้อยู่ในห้อง เล่นเพลงไม่ได้
+        await ctx.send('คุณไม่ได้อยู่ในห้อง❌')
         return
-
     else:
         channel = ctx.message.author.voice.channel
 
-    voice_client = await channel.connect()
-
-    guild = ctx.message.guild
+    voice = await channel.connect()
 
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        file = ydl.extract_info(url, download=True)
-        path = str(file['title']) + "-" + str(file['id'] + ".mp3")
+        file = ydl.extract_info(url, download=False) # ไม่ได้ download
+        url1 = file['formats'][0]['url']
+    voice.play(discord.FFmpegPCMAudio(url1))
+    voice.is_playing()
 
-    voice_client.play(discord.FFmpegPCMAudio(path), after=lambda x: endSong(guild, path))
-    voice_client.source = discord.PCMVolumeTransformer(voice_client.source, 1)
+    voice.source = discord.PCMVolumeTransformer(voice.source, 1)
 
     await ctx.send(f'**Music: **{url}')
-
-    while voice_client.is_playing():
-        await asyncio.sleep(1)
-
 
 bot.run(TOKEN)
