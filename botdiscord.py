@@ -16,6 +16,12 @@ async def on_ready():
     except Exception as e:
         print(e)
 
+@bot.event
+async def on_member_join(member):
+    await member.send(
+        f'Welcome to the server, {member.mention}! Enjoy your stay here.') # แจ้งเตือนคนเข้าเซิฟเวอร์
+
+
 @bot.tree.command(name="hello", description="Replies with Hello")
 async def hellocommand(interaction: discord.Interaction):
     await interaction.response.send_message("Hello It's me BUT DISCORD")
