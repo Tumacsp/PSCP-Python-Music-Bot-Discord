@@ -1,11 +1,11 @@
 import discord
-import os
-import random
 from discord.ext import commands
+from discord import Embed
+import youtube_dl
 
-TOKEN = 'ํOUR TOKEN HERE BUT CANT PASTE IT HERE FOR NOW'
+TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.GpFkGL.5oAG3CIMKRD1O5-8FvNCUTDFOiLsuyHnYX5nSA'
 
-bot = commands.Bot(command_prefix="!", intents= discord.Intents.all())
+bot = commands.Bot(command_prefix="/", intents= discord.Intents.all())
 
 @bot.event
 async def on_ready():
@@ -20,8 +20,21 @@ async def on_ready():
 async def hellocommand(interaction: discord.Interaction):
     await interaction.response.send_message("Hello It's me BUT DISCORD")
 
-@bot.tree.command(name="bot", description="SAID SOMETHING")
-async def hellocommand(interaction: discord.Interaction):
-    await interaction.response.send_message("Yes, the bot is cool. BUT DISCORD")
+@bot.command()
+async def join(ctx): # Join เออกจากห้องคุยเสียงของคนที่อยู่ใช้คำสั่ง
+  if ctx.author.voice:
+    channel = ctx.message.author.voice.channel
+    await channel.connect()
+    await ctx.send("Bot เข้าร่วมแล้ว")
+  else:
+    await ctx.send("คุณไม่ได้อยู่ในห้องเสียง") # กรณีคนใช้คำสั่งไม่อยู่ในห้องเสียง
+
+@bot.command()
+async def leave(ctx): # Leave ออกจากห้องคุยเสียง
+  if ctx.voice_client:
+    await ctx.guild.voice_client.disconnect()
+    await ctx.send("Bot ได้ออกจากห้องแล้ว")
+  else:
+    await ctx.send("Bot ไม่ได้อยู่ในห้องเสียง") # กรณีคนใช้คำสั่งไม่อยู่ในห้องเสียง
 
 bot.run(TOKEN)
