@@ -48,9 +48,10 @@ async def leave(ctx): # Leave ออกจากห้องคุยเสี�
 
 # คำสั่งเปิดเพลง
 
-ydl_opts = {'format': 'bestaudio'}
-FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 
-                'options': '-vn'}
+ydl_opts = {'format': 'bestaudio/best',
+            'postprocessors': [{'key': 'FFmpegExtractAudio',
+                            'preferredcodec': 'mp3',
+                            'preferredquality': '192',}],}  
 
 @bot.command(pass_context=True)
 async def play(ctx, url):
@@ -58,14 +59,13 @@ async def play(ctx, url):
         await ctx.send('คุณไม่ได้อยู่ในห้อง❌')
         return
     else:
-        channel = ctx.message.author.voice.channel
-
-    voice = await channel.connect()
+        voice = ctx.voice_client
+        
 
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         file = ydl.extract_info(url, download=False) # ไม่ได้ download
         url1 = file['formats'][0]['url']
-    voice.play(discord.FFmpegPCMAudio(url1, **FFMPEG_OPTIONS))
+    voice.play(discord.FFmpegPCMAudio(url1))
     voice.is_playing()
 
     voice.source = discord.PCMVolumeTransformer(voice.source, 1)
