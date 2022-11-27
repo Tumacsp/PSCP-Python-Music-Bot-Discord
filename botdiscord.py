@@ -73,4 +73,15 @@ async def play(ctx, url):
 
     await ctx.send(f'**Music: **{url}')
 
+
+#หยุดเพลง
+
+@bot.command()
+async def pause(ctx):
+        voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+        if voice.is_playing():
+            voice.pause()
+        else:
+            await ctx.send("หยุดเพลงแล้ว")
+
 bot.run(TOKEN)
