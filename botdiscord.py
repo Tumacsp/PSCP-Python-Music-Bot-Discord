@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import Embed
 import youtube_dl
 
-TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.Gdn81u.sCOC-uwh9zW8RqfZM7jaDBTE_d9HlOPpR3MiFI'
+TOKEN = ''
 
 bot = commands.Bot(command_prefix="/", intents= discord.Intents.all())
 
