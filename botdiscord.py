@@ -74,7 +74,7 @@ async def play(ctx, url):
 
 #หยุดเพลง
 @bot.command()
-async def pause(ctx):
+async def pause(ctx): # หยุดเพลงไว้ก่อนเดี๋ยวฟังต่อนะ
     voice = discord.utils.get(bot.voice_clients,guild=ctx.guild)
     if voice.is_playing():
         voice.pause()
@@ -92,7 +92,7 @@ async def resume(ctx): #เล่นต่อ
         await ctx.send("ขณะนี้ไม่มีเพลงที่กำลังหยุดชั่วคราว❗")
 
 
-@bot.command()
+@bot.command() # ปิดเพลงเลย แบบปิดไม่ฟังต่อแล้ว
 async def stop(ctx):
     voice = discord.utils.get(bot.voice_clients,guild=ctx.guild)
     voice.stop()
