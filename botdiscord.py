@@ -48,10 +48,9 @@ async def leave(ctx): # Leave ออกจากห้องคุยเสี�
 
 # คำสั่งเปิดเพลง
 
-ydl_opts = {'format': 'bestaudio/best',
-            'postprocessors': [{'key': 'FFmpegExtractAudio',
-                            'preferredcodec': 'mp3',
-                            'preferredquality': '192',}],}   
+ydl_opts = {'format': 'bestaudio'}
+FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 
+                'options': '-vn'}
 
 @bot.command(pass_context=True)
 async def play(ctx, url):
@@ -66,19 +65,25 @@ async def play(ctx, url):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         file = ydl.extract_info(url, download=False) # ไม่ได้ download
         url1 = file['formats'][0]['url']
-    voice.play(discord.FFmpegPCMAudio(url1))
+    voice.play(discord.FFmpegPCMAudio(url1, **FFMPEG_OPTIONS))
     voice.is_playing()
 
     voice.source = discord.PCMVolumeTransformer(voice.source, 1)
 
+    await ctx.send('')
     await ctx.send(f'**Music: **{url}')
 
-@bot.command()
+@bot.tree.command(name="help", description="Bot commands")
 async def hellocommand(ctx):
     embed = Embed(title="Help me!", color=0xff2450)
-    embed.add_field(name="/help", value="Bot commands", inline=False) #enter
+    embed.add_field(name="/help", value="Bot commands", inline=False)
     embed.add_field(name="/hello", value="Hello It's me", inline=False)
     embed.add_field(name="/bot", value="Yes, the bot is cool.", inline=False)
+    embed.add_field(name="/play", value="play music", inline=False)
+    embed.add_field(name="/stop", value="stop music", inline=False)
+    embed.add_field(name="/pause", value="pause music", inline=False)
+    embed.add_field(name="/leave", value="Bot leave", inline=False)
+    embed.add_field(name="/join", value="Bot join", inline=False
     await ctx.response.send_message(embed=embed)
 
 bot.run(TOKEN)
