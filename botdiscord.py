@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import Embed
 import youtube_dl
 
-TOKEN = 'Token'
+TOKEN = ''
 
 bot = commands.Bot(command_prefix="/", intents= discord.Intents.all())
 
@@ -22,7 +22,7 @@ async def on_member_join(member):
     await member.send(f'Welcome to the server, {member.mention}! Enjoy your stay here.') 
 
 
-@bot.tree.command(name="hello", description="Replies with Hello")
+@bot.tree.command(name="hello", description="Replies with Hello ddd")
 async def hellocommand(interaction: discord.Interaction):
     await interaction.response.send_message("Hello It's me BUT DISCORD")
 
@@ -72,5 +72,13 @@ async def play(ctx, url):
     voice.source = discord.PCMVolumeTransformer(voice.source, 1)
 
     await ctx.send(f'**Music: **{url}')
+
+@bot.command()
+async def hellocommand(ctx):
+    embed = Embed(title="Help me!", color=0xff2450)
+    embed.add_field(name="/help", value="Bot commands", inline=False) #enter
+    embed.add_field(name="/hello", value="Hello It's me", inline=False)
+    embed.add_field(name="/bot", value="Yes, the bot is cool.", inline=False)
+    await ctx.response.send_message(embed=embed)
 
 bot.run(TOKEN)
