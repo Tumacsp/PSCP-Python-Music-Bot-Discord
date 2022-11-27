@@ -73,4 +73,17 @@ async def play(ctx, url):
     await ctx.send('')
     await ctx.send(f'**Music: **{url}')
 
+@bot.tree.command(name="help", description="Bot commands")
+async def hellocommand(ctx):
+    embed = Embed(title="Help me!", color=0xff2450)
+    embed.add_field(name="/help", value="Bot commands", inline=True)
+    embed.add_field(name="/hello", value="Hello It's me", inline=True)
+    embed.add_field(name="/bot", value="Yes, the bot is cool.", inline=True)
+    embed.add_field(name="/play", value="play music", inline=True)
+    embed.add_field(name="/stop", value="stop music", inline=True)
+    embed.add_field(name="/pause", value="pause music", inline=True)
+    embed.add_field(name="/leave", value="Bot leave", inline=True)
+    embed.add_field(name="/join", value="Bot join", inline=True)
+    await ctx.response.send_message(embed=embed)
+
 bot.run(TOKEN)
