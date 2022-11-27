@@ -83,7 +83,7 @@ async def hellocommand(ctx):
     embed.add_field(name="/stop", value="stop music", inline=False)
     embed.add_field(name="/pause", value="pause music", inline=False)
     embed.add_field(name="/leave", value="Bot leave", inline=False)
-    embed.add_field(name="/join", value="Bot join", inline=False
+    embed.add_field(name="/join", value="Bot join", inline=False)
     await ctx.response.send_message(embed=embed)
 
 bot.run(TOKEN)
