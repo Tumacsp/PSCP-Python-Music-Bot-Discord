@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import Embed
 import youtube_dl
 
-TOKEN = ''
+TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.Gdn81u.sCOC-uwh9zW8RqfZM7jaDBTE_d9HlOPpR3MiFI'
 
 bot = commands.Bot(command_prefix="/", intents= discord.Intents.all())
 
@@ -60,7 +60,6 @@ async def play(ctx, url):
         return
     else:
         voice = ctx.voice_client
-        
 
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         file = ydl.extract_info(url, download=False) # ไม่ได้ download
@@ -73,6 +72,34 @@ async def play(ctx, url):
     await ctx.send('')
     await ctx.send(f'**Music: **{url}')
 
+#หยุดเพลง
+@bot.command()
+async def pause(ctx):
+    voice = discord.utils.get(bot.voice_clients,guild=ctx.guild)
+    if voice.is_playing():
+        voice.pause()
+        await ctx.send("Paused ⏸")
+    else:
+        await ctx.send("ขณะนี้ไม่มีเพลงเล่นในห้องเสียง!❗")
+
+@bot.command()
+async def resume(ctx): #เล่นต่อ
+    voice = discord.utils.get(bot.voice_clients,guild=ctx.guild)
+    if voice.is_paused():
+        voice.resume()
+        await ctx.send("Resume ⏯")
+    else:
+        await ctx.send("ขณะนี้ไม่มีเพลงที่กำลังหยุดชั่วคราว❗")
+
+
+@bot.command()
+async def stop(ctx):
+    voice = discord.utils.get(bot.voice_clients,guild=ctx.guild)
+    voice.stop()
+    await ctx.send("Stop ⛔")
+
+
+# เมนู Help
 @bot.tree.command(name="help", description="Bot commands")
 async def hellocommand(ctx):
     embed = Embed(title="Help me!", color=0xff2450)
@@ -86,22 +113,5 @@ async def hellocommand(ctx):
     embed.add_field(name="/join", value="Bot join", inline=False)
     await ctx.response.send_message(embed=embed)
 
-#หยุดเพลง
-@bot.command()
-async def pause(ctx):
-    voice = discord.utils.get(bot.voice_clients,guild=ctx.guild)
-    if voice.is_playing():
-        voice.pause()
-bot.command()
-async def resume(ctx): #เล่นต่อ
-    voice = discord.utils.get(bot.voice_clients,guild=ctx.guild)
-    if voice.is_paused():
-        voice.resume()
-
-
-@bot.command()
-async def stop(ctx):
-    voice = discord.utils.get(bot.voice_clients,guild=ctx.guild)
-    voice.stop()
         
 bot.run(TOKEN)
