@@ -48,12 +48,10 @@ async def leave(ctx): # Leave ออกจากห้องคุยเสี�
 
 # คำสั่งเปิดเพลง
 
-ydl_opts = {
-    'format': 'bestaudio/best',
-    'postprocessors': [{
-        'key': 'FFmpegExtractAudio',
-        'preferredcodec': 'mp3',
-        'preferredquality': '192',}],}   
+ydl_opts = {'format': 'bestaudio/best',
+            'postprocessors': [{'key': 'FFmpegExtractAudio',
+                            'preferredcodec': 'mp3',
+                            'preferredquality': '192',}],}   
 
 @bot.command(pass_context=True)
 async def play(ctx, url):
