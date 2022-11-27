@@ -92,6 +92,16 @@ async def pause(ctx):
     voice = discord.utils.get(bot.voice_clients,guild=ctx.guild)
     if voice.is_playing():
         voice.pause()
+bot.command()
+async def resume(ctx): #เล่นต่อ
+    voice = discord.utils.get(bot.voice_clients,guild=ctx.guild)
+    if voice.is_paused():
+        voice.resume()
 
+
+@bot.command()
+async def stop(ctx):
+    voice = discord.utils.get(bot.voice_clients,guild=ctx.guild)
+    voice.stop()
         
 bot.run(TOKEN)
