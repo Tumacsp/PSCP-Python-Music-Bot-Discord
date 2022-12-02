@@ -24,7 +24,7 @@ async def on_member_join(member):
     await member.send(f'Welcome to the server, {member.mention}! Enjoy your stay here.')
 
 
-@bot.tree.command(name="hello", description="Replies with Hello ddd")
+@bot.tree.command(name="hello", description="Replies with Hello")
 async def hellocommand(interaction: discord.Interaction):
     await interaction.response.send_message("Hello It's me BUT DISCORD")
 
