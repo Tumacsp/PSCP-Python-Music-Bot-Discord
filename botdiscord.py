@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from discord import Embed
 import youtube_dl
+from song import*
 
 TOKEN = ''
 
