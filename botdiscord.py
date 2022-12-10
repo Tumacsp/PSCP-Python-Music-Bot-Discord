@@ -4,7 +4,7 @@ from discord import Embed
 import youtube_dl
 from song import*
 
-TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.GyCNG_.jXqR5ZJUsZenC5vM4aQHdprju12IPql_X2vQtM'
+TOKEN = ''
 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
