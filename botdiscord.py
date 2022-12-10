@@ -35,6 +35,10 @@ async def on_member_join(member):
 async def hellocommand(interaction: discord.Interaction):
     await interaction.response.send_message("Hello It's me BUT DISCORD")
 
+
+
+
+
 # เรียกบอทเข้าห้องคุย
 @bot.command()
 async def join(ctx):  # Join เออกจากห้องคุยเสียงของคนที่อยู่ใช้คำสั่ง
@@ -135,16 +139,21 @@ async def on_message(message):
         # embed คือป้าย ทำให้การเรียกใช้งานดูสวย ดูดีมากขึ้น
         await message.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ "...py" หรือ "/help"')
 
+
+# /////////////// คำสั่ง python //////////////////
+
+@bot.tree.command(name="lstpy", description="Bot commands")
+async def lstcommand(ctx):
+    embed = Embed(title="Python List []", description="เป็นข้อมูลแบบมีลำดับรวมข้อมูลได้หลายประเภท", color=0xFF0046)
+    embed.add_field(name='mylist = ["coconut", 1, 1.26]', value="List เก็บข้อมูลเป็น index ไอเทมแรกเริ่มที่ 0 ", inline=False)
+    embed.add_field(name="คลิกดูได้ที่นี่", value="👉  https://www.w3schools.com/python/python_lists.asp", inline=False)
+    embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
+    await ctx.response.send_message(embed=embed)
+
+
+
+
 #//////////////// แมนู Help ///////////////////
-@bot.tree.command(name="python", description="Bot commands")
-async def python(message):
-    await message.channel.send('ลองดูนี่สิ!! 👇')
-    Embed = discord.Embed(title="Python List []", description="เป็นข้อมูลแบบมีลำดับรวมข้อมูลได้หลายประเภท", color=0xFF0046)
-    Embed.add_field(name='mylist = ["coconut", 1, 1.26]', value="List เก็บข้อมูลเป็น index ไอเทมแรกเริ่มที่ 0 ", inline=False)
-    Embed.add_field(name="คลิกดูได้ที่นี่", value="👉  https://www.w3schools.com/python/python_lists.asp", inline=False)
-    Embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
-    #Embed.set_image(url='https://i.imgur.com/qYPNY8d.png')
-    await message.channel.send(embed=Embed)
 
 @bot.tree.command(name="help", description="Bot commands")
 async def hellocommand(ctx):
