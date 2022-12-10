@@ -95,6 +95,14 @@ async def play(ctx, url):
     await ctx.send(f'**Music: **{title}') # ชื่อเพลง
     await ctx.send(thumb) # รูปเพลง
 
+    # Embed เล่นเพลง
+    await ctx.channel.send('-----------------------------')
+    embed = Embed(title="** Now playing**", description="", color=0xFF0046)
+    embed.add_field(name=f"**Music: **{title}", value="", inline=False)
+    embed.add_field(name="-------------------------------", value="", inline=False)
+    embed.set_image(url=thumb)
+    await ctx.send_message(embed=embed)
+
 
 
 # หยุดเพลง
@@ -142,7 +150,8 @@ async def on_message(message):
 
 # /////////////// คำสั่ง python //////////////////
 
-@bot.tree.command(name="lstpy", description="Bot commands")
+# Python Lists
+@bot.tree.command(name="lstpy", description="Bot commands") 
 async def lstcommand(ctx):
     embed = Embed(title="Python List []", description="เป็นข้อมูลแบบมีลำดับรวมข้อมูลได้หลายประเภท", color=0xFF0046)
     embed.add_field(name='mylist = ["coconut", 1, 1.26]', value="List เก็บข้อมูลเป็น index ไอเทมแรกเริ่มที่ 0 ", inline=False)
