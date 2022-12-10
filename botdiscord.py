@@ -4,19 +4,25 @@ from discord import Embed
 import youtube_dl
 from song import*
 
+
+# token bot
 TOKEN = ''
 
+# กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
 
+# คำสั่งที่บอกว่า bot พร้อมใช้งานแล้ว
 @bot.event
-async def on_ready():
-    print("I'm ONLINE But Discord")
+async def on_ready(): # ถ้า bot พร้อมเมื่อไหร่จะทำฟังก์ชันนี้ ครั้งเดียวเท่านั้น
+    print("The bot is now ready for use!")
+    print("------------------------------")
     try:
         synced = await bot.tree.sync()
-        print(f"Synced {len(synced)} command(s)")
+        print(f"Synced {len(synced)} command(s)") # แสดงคำสั่งทั้งหมดของ bot ตัวนี้
     except Exception as e:
         print(e)
+
 
 # แจ้งเตือนที่แชทส่วนตัว เมื่อเข้าเซิฟเวอร์
 
@@ -50,14 +56,13 @@ async def leave(ctx):  # Leave ออกจากห้องคุยเสี�
         # กรณีคนใช้คำสั่งไม่อยู่ในห้องเสียง
         await ctx.send("Bot ไม่ได้อยู่ในห้องเสียง❌")
 
-        #### คำสั่งเปิดเพลง ####
+# ////////////// เล่นเพลง //////////////////////
+
 
 ydl_opts = {'format': 'bestaudio/best',
             'postprocessors': [{'key': 'FFmpegExtractAudio',
                                 'preferredcodec': 'mp3',
                                 'preferredquality': '192', }], }
-
-# ////////////// เล่นเพลง //////////////////////
 
 @bot.command(pass_context=True)
 async def play(ctx, url):
