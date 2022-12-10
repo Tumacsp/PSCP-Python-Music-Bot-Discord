@@ -57,25 +57,35 @@ ydl_opts = {'format': 'bestaudio/best',
                                 'preferredcodec': 'mp3',
                                 'preferredquality': '192', }], }
 
-# เล่นเพลง
+# ////////////// เล่นเพลง //////////////////////
+
 @bot.command(pass_context=True)
 async def play(ctx, url):
-    if not ctx.message.author.voice:  # ถ้าผู้ใช้ไม่ได้อยู่ในห้อง เล่นเพลงไม่ได้
-        await ctx.send('คุณไม่ได้อยู่ในห้อง❌')
-        return
+    if (ctx.author.voice): # ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
+        channel = ctx.message.author.voice.channel
+        await channel.connect()
+        await ctx.send("Bot เข้าร่วมห้องเสียงแล้ว 😎")
+        await ctx.send("--- พร้อมเปิดเพลงให้คุณแล้ว ---")
     else:
-        voice = ctx.voice_client
+        await ctx.send("คุณไม่ได้อยู่ในห้องเสียง❗")
 
+    voice = ctx.voice_client # การเชื่อมต่อเสียงผู้ใช้
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         file = ydl.extract_info(url, download=False)  # ไม่ได้ download
-        url1 = file['formats'][0]['url']
-    voice.play(discord.FFmpegPCMAudio(url1))
+        
+    url = file['formats'][0]['url'] #ลิ้งเพลง
+    thumb = file['thumbnails'][0]['url'] # รูปเพลง
+    title = file['title'] #ชื่อเพลง
+
+    voice.play(discord.FFmpegPCMAudio(url))
     voice.is_playing()
 
     voice.source = discord.PCMVolumeTransformer(voice.source, 1)
 
-    await ctx.send('')
-    await ctx.send(f'**Music: **{url}')
+    await ctx.send(f'**Music: **{title}') # ชื่อเพลง
+    await ctx.send(thumb) # รูปเพลง
+
+
 
 # หยุดเพลง
 @bot.command()
@@ -104,7 +114,8 @@ async def stop(ctx):
     voice.stop()
     await ctx.send("Stop ⛔")
 
-            #### เมนู Help ####
+
+#//////////////// แมนู Help ///////////////////
 
 @bot.tree.command(name="help", description="Bot commands")
 async def hellocommand(ctx):
