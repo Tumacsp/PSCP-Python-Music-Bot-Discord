@@ -4,7 +4,7 @@ from discord import Embed
 import youtube_dl
 from song import*
 
-TOKEN = ''
+TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.GyCNG_.jXqR5ZJUsZenC5vM4aQHdprju12IPql_X2vQtM'
 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
@@ -22,7 +22,13 @@ async def on_ready():
 
 @bot.event
 async def on_member_join(member):
-    await member.send(f'Welcome to the server, {member.mention}! Enjoy your stay here.')
+    await member.send(f'Welcome to the server, {member.mention}! Enjoy your stay here.') # แจ้งไปที่แชท สต.
+    channel = bot.get_channel(721276405480030321) # ส่งที่ห้องไอดีนี้
+    # await channel.send()
+    embed = discord.Embed(title=f"👋 Hi {member}  \n🎊 Welcome To My Server!", description=f"Welcome {member.mention}! Enjoy your stay here.", color=0xFF0046)
+    embed.add_field(name="หากสนใจเรื่องอะไร ❓", value="👉  พิมพ์ '...py' หรือ '/help ' ", inline=False)
+    embed.set_image(url='https://media.tenor.com/LDuF2jVabwoAAAAC/banner-welcome.gif') # รูป welcome
+    await channel.send(embed=embed)
 
 
 @bot.tree.command(name="hello", description="Replies with Hello")
@@ -115,7 +121,30 @@ async def stop(ctx):
     await ctx.send("Stop ⛔")
 
 
+@bot.event
+async def on_message(message):
+    mes_user = message.content # กำหนดเป็นตัวพิมเล็ก
+    if mes_user == 'bookpy':
+        await message.channel.send('ลองดูนี่สิ!! 👇')
+        Embed = discord.Embed(title="แนะนำหนังสือ Python 🐍", description="แนะนำการเขียนโปรแกรม Python สำหรับผู้เริ่มต้น", color=0xFF0046)
+        Embed.add_field(name="Think Python", value="How to Think Like a Computer Scientist", inline=False)
+        Embed.add_field(name="คลิกดูได้ที่นี่", value="👉  https://greenteapress.com/thinkpython2/thinkpython2.pdf", inline=False)
+        Embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
+        Embed.set_image(url='https://i.imgur.com/qYPNY8d.png')
+        await message.channel.send(embed=Embed)
+        # embed คือป้าย ทำให้การเรียกใช้งานดูสวย ดูดีมากขึ้น
+        await message.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ "...py" หรือ "/help"')
+
 #//////////////// แมนู Help ///////////////////
+@bot.tree.command(name="python", description="Bot commands")
+async def python(message):
+    await message.channel.send('ลองดูนี่สิ!! 👇')
+    Embed = discord.Embed(title="Python List []", description="เป็นข้อมูลแบบมีลำดับรวมข้อมูลได้หลายประเภท", color=0xFF0046)
+    Embed.add_field(name='mylist = ["coconut", 1, 1.26]', value="List เก็บข้อมูลเป็น index ไอเทมแรกเริ่มที่ 0 ", inline=False)
+    Embed.add_field(name="คลิกดูได้ที่นี่", value="👉  https://www.w3schools.com/python/python_lists.asp", inline=False)
+    Embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
+    #Embed.set_image(url='https://i.imgur.com/qYPNY8d.png')
+    await message.channel.send(embed=Embed)
 
 @bot.tree.command(name="help", description="Bot commands")
 async def hellocommand(ctx):
