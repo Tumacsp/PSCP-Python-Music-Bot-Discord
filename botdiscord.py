@@ -32,8 +32,8 @@ async def on_member_join(member):
 
 
 @bot.tree.command(name="hello", description="Replies with Hello")
-async def hellocommand(interaction: discord.Interaction):
-    await interaction.response.send_message("Hello It's me BUT DISCORD")
+async def hellocommand(ctx):
+    await ctx.response.send_message("Hello It's me BUT DISCORD")
 
 
 
@@ -165,15 +165,15 @@ async def lstcommand(ctx):
 
 @bot.tree.command(name="helpmusic", description="Bot commands")
 async def musiccommand(ctx):
-    embed = Embed(title="Help Music!", color=0xff2450)
-    embed.add_field(name="Bot command", value="```/help```", inline=True)
-    embed.add_field(name="Hello It's m", value="```/hello```", inline=True)
-    embed.add_field(name="Yes, the bot is cool", value="```/bot```", inline=True)
-    embed.add_field(name="play musi", value="```/play```", inline=True)
-    embed.add_field(name="stop musi", value="```/stop", inline=True)
-    embed.add_field(name="pause musi", value="```/pause", inline=True)
-    embed.add_field(name="Bot leav", value="```/leave", inline=True)
-    embed.add_field(name="Bot joi", value="```/join", inline=True)
+    embed = Embed(title="Help me! - Help Music", color=0xff2450)
+    embed.add_field(name="Bot commands", value="```/help```", inline=True)
+    embed.add_field(name="Hello", value="```/hello```", inline=True)
+    embed.add_field(name="Bot is cool.", value="```/bot```", inline=True)
+    embed.add_field(name="play music", value="```/play```", inline=True)
+    embed.add_field(name="stop music", value="```/stop```", inline=True)
+    embed.add_field(name="pause music", value="```/pause```", inline=True)
+    embed.add_field(name="Bot leave", value="```/leave```", inline=True)
+    embed.add_field(name="Bot join", value="```/join```", inline=True)
     embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
     await ctx.response.send_message(embed=embed)
 
