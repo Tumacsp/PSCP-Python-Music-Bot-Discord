@@ -7,7 +7,7 @@ from song import*
 
 
 # token bot
-TOKEN = '-'
+TOKEN = ''
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
@@ -193,6 +193,22 @@ async def stop(ctx):
 
 # /////////////// คำสั่ง python //////////////////
 
+
+# เรียกหนังสือ Think Python
+@bot.tree.command(name="bookpy", description="หนังสือ Think Python") 
+async def bookcommand(ctx):
+    embed = Embed(title="แนะนำหนังสือ Python 🐍", description="แนะนำการเขียนโปรแกรม Python สำหรับผู้เริ่มต้น", color=0xFF0046)
+    embed.add_field(name="Think Python", value="How to Think Like a Computer Scientist", inline=False)
+    embed.add_field(name="คลิกดูได้ที่นี่", value="👉  https://greenteapress.com/thinkpython2/thinkpython2.pdf", inline=False)
+    embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
+    embed.set_image(url='https://i.imgur.com/qYPNY8d.png')
+    await ctx.response.send_message(embed=embed)
+    # embed คือป้าย ทำให้การเรียกใช้งานดูสวย ดูดีมากขึ้น
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
+
+
+
+
 # StackOverFlow
 @bot.tree.command(name="stack_of", description="เว็บไซต์ StackOverFlow") 
 async def lstcommand(ctx):
@@ -202,6 +218,7 @@ async def lstcommand(ctx):
     embed.set_thumbnail(url='https://i1.sndcdn.com/avatars-000708374642-k6d7gm-t500x500.jpg')
     embed.set_image(url='https://techcrunch.com/wp-content/uploads/2021/03/stack-overflow-for-teams.png')
     await ctx.response.send_message(embed=embed)
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
 
 
 # Python Lists
@@ -219,6 +236,7 @@ async def lstcommand(ctx):
     embed.add_field(name="คลิกดูได้ที่นี่เพิ่มเติมที่ ", value="👉 https://www.w3schools.com/python/python_lists_methods.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
 
 
 
@@ -236,6 +254,7 @@ async def lstcommand(ctx):
     embed.add_field(name="อยากรู้คำสั่ง String Methods เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_ref_string.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
 
 
 
