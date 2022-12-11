@@ -264,6 +264,7 @@ async def lstcommand(ctx):
     embed.add_field(name="อยากรู้คำสั่ง Set Methods เพิ่มเติมคลิกดูได้ที่นี่ 👇", value="https://www.w3schools.com/python/python_sets_methods.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
 
 
 # Python Math Methods
@@ -281,6 +282,7 @@ async def mathcommand(ctx):
     embed.add_field(name="อยากรู้คำสั่ง Math เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_math.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
 
 
 
