@@ -4,7 +4,7 @@ from discord import Embed
 import youtube_dl
 from song import*
 
-TOKEN = ''
+TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.G2CUe0.Tq39LNty7gK_uKIu44JlbzBF0XdgVjVLZebR_A'
 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
@@ -26,7 +26,7 @@ async def on_member_join(member):
     channel = bot.get_channel(721276405480030321) # ส่งที่ห้องไอดีนี้
     # await channel.send()
     embed = discord.Embed(title=f"👋 Hi {member}  \n🎊 Welcome To My Server!", description=f"Welcome {member.mention}! Enjoy your stay here.", color=0xFF0046)
-    embed.add_field(name="หากสนใจเรื่องอะไร ❓", value="👉  พิมพ์ '...py' หรือ '/help ' ", inline=False)
+    embed.add_field(name="หากสนใจเรื่องอะไร ❓", value="👉  ```พิมพ์ '...py' หรือ '/help```' ", inline=False)
     embed.set_image(url='https://media.tenor.com/LDuF2jVabwoAAAAC/banner-welcome.gif') # รูป welcome
     await channel.send(embed=embed)
 
@@ -39,13 +39,14 @@ async def hellocommand(interaction: discord.Interaction):
 
 
 
-# เรียกบอทเข้าห้องคุย
+# เรียกบอทเข้าห้องคุย ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
 @bot.command()
 async def join(ctx):  # Join เออกจากห้องคุยเสียงของคนที่อยู่ใช้คำสั่ง
     if ctx.author.voice:
         channel = ctx.message.author.voice.channel
         await channel.connect()
-        await ctx.send("Bot เข้าร่วมแล้ว�")
+        await ctx.send("Bot เข้าร่วมห้องเสียงแล้ว 😎")
+        await ctx.send("--- พร้อมเปิดเพลงให้คุณแล้ว ---")
     else:
         # กรณีคนใช้คำสั่งไม่อยู่ในห้องเสียง555
         await ctx.send("คุณไม่ได้อยู่ในห้องเสียง❌")
@@ -60,40 +61,44 @@ async def leave(ctx):  # Leave ออกจากห้องคุยเสี�
         # กรณีคนใช้คำสั่งไม่อยู่ในห้องเสียง
         await ctx.send("Bot ไม่ได้อยู่ในห้องเสียง❌")
 
-        #### คำสั่งเปิดเพลง ####
 
-ydl_opts = {'format': 'bestaudio/best',
-            'postprocessors': [{'key': 'FFmpegExtractAudio',
-                                'preferredcodec': 'mp3',
-                                'preferredquality': '192', }], }
+
+
 
 # ////////////// เล่นเพลง //////////////////////
 
+ydl_opts = {'format': 'bestaudio'}
+ffmpeg_options = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+# แก้บอทเล่นเพลงไม่จบ
+
 @bot.command(pass_context=True)
 async def play(ctx, url):
-    if (ctx.author.voice): # ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
-        channel = ctx.message.author.voice.channel
-        await channel.connect()
-        await ctx.send("Bot เข้าร่วมห้องเสียงแล้ว 😎")
-        await ctx.send("--- พร้อมเปิดเพลงให้คุณแล้ว ---")
-    else:
-        await ctx.send("คุณไม่ได้อยู่ในห้องเสียง❗")
-
+    # ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
     voice = ctx.voice_client # การเชื่อมต่อเสียงผู้ใช้
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        file = ydl.extract_info(url, download=False)  # ไม่ได้ download
+        file = ydl.extract_info(url, download=False) # ไม่ได้ download
+        url = file['formats'][0]['url'] #ลิ้งเพลง
+    voice.play(discord.FFmpegPCMAudio(url, **ffmpeg_options))
+    voice.is_playing() # เล่นเพลง
         
-    url = file['formats'][0]['url'] #ลิ้งเพลง
-    thumb = file['thumbnails'][0]['url'] # รูปเพลง
+    thumb = file['thumbnail'] # รูปเพลง
     title = file['title'] #ชื่อเพลง
+    view = file['view_count'] # ยอดวิว
+    date = file['upload_date'] # วันเวลา
+    time = file['duration'] #เวลาเพลง
+    # คำนวณเวลาเพลง
+    minute= int(time/60)
+    second = int(time%60)
 
-    voice.play(discord.FFmpegPCMAudio(url))
-    voice.is_playing()
-
-    voice.source = discord.PCMVolumeTransformer(voice.source, 1)
-
-    await ctx.send(f'**Music: **{title}') # ชื่อเพลง
-    await ctx.send(thumb) # รูปเพลง
+    # Embed เล่นเพลง
+    embed = Embed(title="🎶Now playing🎶", color=0xFF0046)
+    embed.add_field(name=f"Music: {title}", value="—————————————————————————————", inline=False)
+    embed.add_field(name="🕘| Duration", value=f"```0{minute}:{second} ```", inline=True)
+    embed.add_field(name="👀| Views", value=f"```ดู {view} ครั้ง```", inline=True)
+    embed.add_field(name="📅| Date", value=f"```เมื่อ {date}```", inline=True)
+    embed.set_thumbnail(url=thumb) # รูปเล็ก
+    embed.set_footer(text='Bot Music Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
+    await ctx.channel.send(embed=embed)
 
 
 
@@ -138,11 +143,14 @@ async def on_message(message):
         await message.channel.send(embed=Embed)
         # embed คือป้าย ทำให้การเรียกใช้งานดูสวย ดูดีมากขึ้น
         await message.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ "...py" หรือ "/help"')
+    await bot.process_commands(message) # ทำคำสั่ง event แล้วไปทำคำสั่ง bot command ต่อ
+
 
 
 # /////////////// คำสั่ง python //////////////////
 
-@bot.tree.command(name="lstpy", description="Bot commands")
+# Python Lists
+@bot.tree.command(name="lstpy", description="Bot commands") 
 async def lstcommand(ctx):
     embed = Embed(title="Python List []", description="เป็นข้อมูลแบบมีลำดับรวมข้อมูลได้หลายประเภท", color=0xFF0046)
     embed.add_field(name='mylist = ["coconut", 1, 1.26]', value="List เก็บข้อมูลเป็น index ไอเทมแรกเริ่มที่ 0 ", inline=False)
