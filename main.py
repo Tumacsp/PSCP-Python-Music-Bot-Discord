@@ -253,8 +253,20 @@ async def lstcommand(ctx):
     await ctx.response.send_message(embed=embed)
     await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
 
+# Python Set Methods
+@bot.tree.command(name="setmeth_py", description="Bot commands")
+async def lstcommand(ctx):
+    embed = Embed(title="Python String Methods", description="เป็นคำสั่ง built-in ที่สามารถนำมาใช้กับ String ได้", color=0xFF0046)
+    embed.add_field(name='.add()', value="เพิ่มค่าเข้าไปในตัว Set ที่เราจะใช้", inline=False)
+    embed.add_field(name='intersection()', value="จะดึงค่าที่เหมือนกันออกมา", inline=False)
+    embed.add_field(name=".union() ", value="จะดึงค่าที่ต่างกันออกมา", inline=False)
+    embed.add_field(name=".update() ", value="จะเพิ่มตัว Set ที่เลือกเข้าไปใน Set ที่เรากำหนดไว้", inline=False)
+    embed.add_field(name="อยากรู้คำสั่ง Set Methods เพิ่มเติมคลิกดูได้ที่นี่ 👇", value="https://www.w3schools.com/python/python_sets_methods.asp", inline=False)
+    embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
+    await ctx.response.send_message(embed=embed)
 
 
+# Python Math Methods
 @bot.tree.command(name="math_py", description="Bot commands")
 async def mathcommand(ctx):
     embed = Embed(title="Math", description="เป็น built-in เกี่ยวกับคณิตศาสตร์", color=0xFF0046)
