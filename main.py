@@ -5,41 +5,50 @@ import youtube_dl
 import datetime
 from song import*
 
+
+# token bot
 TOKEN = '-'
 
+
+# กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
 
+# คำสั่งที่บอกว่า bot พร้อมใช้งานแล้ว
 @bot.event
 async def on_ready():
     print("I'm ONLINE But Discord")
-    try:
-        synced = await bot.tree.sync()
-        print(f"Synced {len(synced)} command(s)")
-    except Exception as e:
-        print(e)
+    synced = await bot.tree.sync()
+    print(f"Synced {len(synced)} command(s)")
+
+
 
 # แจ้งเตือนที่แชทส่วนตัว เมื่อเข้าเซิฟเวอร์
-
 @bot.event
 async def on_member_join(member):
     await member.send(f'Welcome to the server, {member.mention}! Enjoy your stay here.') # แจ้งไปที่แชท สต.
     channel = bot.get_channel(721276405480030321) # ส่งที่ห้องไอดีนี้
-    # await channel.send()
     embed = discord.Embed(title=f"👋 Hi {member}  \n🎊 Welcome To My Server!", description=f"Welcome {member.mention}! Enjoy your stay here.", color=0xFF0046)
-    embed.add_field(name="หากสนใจเรื่องอะไร ❓", value="👉  ```พิมพ์ '...py' หรือ '/help```' ", inline=False)
+    embed.add_field(name="หากสนใจเรื่องอะไร ❓", value="พิมพ์ตามนี้เลย👇", inline=False)
+    embed.add_field(name="Help Music", value="```/helpmusic```", inline=True)
+    embed.add_field(name="Help Python", value="```/helppython```", inline=True)
     embed.set_image(url='https://media.tenor.com/LDuF2jVabwoAAAAC/banner-welcome.gif') # รูป welcome
     await channel.send(embed=embed)
 
+
+#แจ้งคนออกเซิฟ
 @bot.event
-async def on_member_remove(member): #แจ้งคนออกเซิฟ
+async def on_member_remove(member): 
     channel = bot.get_channel(721276405480030321) # ส่งที่ห้องไอดีนี้
-    # await channel.send()
-    embed = discord.Embed(title=f"👋 Bye Bye {member}  \n🎊 Bye", description=f"Bye {member.mention}! Enjoy your stay here.", color=0xFF0046)
+    embed = discord.Embed(title=f"👋 Bye Bye {member}", description="Thank you for joining in the fun on our server.😭", color=0xFF0046)
+    embed.set_image(url='https://j.gifs.com/98OvjJ.gif')
     await channel.send(embed=embed)
 
+
+
+#แจ้งคนเข้า- ออก วอย แชท
 @bot.event
-async def on_voice_state_update(member, before, after): #แจ้งคนเข้า- ออก วอย แชท
+async def on_voice_state_update(member, before, after):
     channel = bot.get_channel(1039567269992341554)
     tmp1 = datetime.datetime.now()
     txtsend = tmp1.strftime(" %d %B %Y %H:%M:%S")
@@ -53,9 +62,29 @@ async def on_voice_state_update(member, before, after): #แจ้งคนเ�
             await channel.send(embed=embed)
 
 
+# คำสั่ง chatbot เมื่อพิมพ์อะไรบางอย่างแล้ว bot จะตอบกลับมา
+@bot.event
+async def on_message(message):
+    mes_user = message.content # กำหนดเป็นตัวพิมเล็ก
+    tmp1 = datetime.datetime.now()
+    txtsend = tmp1.strftime(" %d %B %Y %H:%M:%S")
+    if mes_user == "hello":
+        await message.channel.send('สวัสดี')
+    elif mes_user[0:] == "กี่โมง":
+        await message.channel.send(txtsend)
+    elif mes_user == 'hi bot':
+        await message.channel.send(str(message.author.name) + 'Hello') # เรียกชื่อผู้ใช้ + hello
+    await bot.process_commands(message) # ทำคำสั่ง event แล้วไปทำคำสั่ง bot command ต่อ
+
+
+
+
 @bot.tree.command(name="hello", description="Replies with Hello")
 async def hellocommand(ctx):
     await ctx.response.send_message("Hello It's me BUT DISCORD")
+
+
+
 
 
 
@@ -82,6 +111,7 @@ async def leave(ctx):  # Leave ออกจากห้องคุยเสี�
     else:
         # กรณีคนใช้คำสั่งไม่อยู่ในห้องเสียง
         await ctx.send("Bot ไม่ได้อยู่ในห้องเสียง❌")
+
 
 
 
@@ -152,20 +182,27 @@ async def stop(ctx):
     await ctx.send("Stop ⛔")
 
 
-@bot.event
-async def on_message(message):
-    mes_user = message.content # กำหนดเป็นตัวพิมเล็ก
-    tmp1 = datetime.datetime.now()
-    txtsend = tmp1.strftime(" %d %B %Y %H:%M:%S")
-    if mes_user == "hello":
-        await message.channel.send('สวัสดี')
-    elif mes_user[0:] == "กี่โมง":
-        await message.channel.send(txtsend)
-    await bot.process_commands(message) # ทำคำสั่ง event แล้วไปทำคำสั่ง bot command ต่อ
+
+
+
+
+
+
 
 
 
 # /////////////// คำสั่ง python //////////////////
+
+# StackOverFlow
+@bot.tree.command(name="stack_of", description="เว็บไซต์ StackOverFlow") 
+async def lstcommand(ctx):
+    embed = Embed(title="StackOverFlow", description="เว็บไซต์ Stack OverFlow เหมาะสำหรับนักเขียนโปรแกรมทุกคน", color=0xFF0046)
+    embed.add_field(name='Stack OverFlow คือเว็บอะไร', value="เว็บ ถาม - ตอบ เกี่ยวกับปัญหาการเขียนโปรแกรมทุกภาษา ที่ใหญ่ที่สุดในโลก", inline=False)
+    embed.add_field(name="คลิกดูได้ที่นี่👇", value="https://stackoverflow.com/", inline=False)
+    embed.set_thumbnail(url='https://i1.sndcdn.com/avatars-000708374642-k6d7gm-t500x500.jpg')
+    embed.set_image(url='https://techcrunch.com/wp-content/uploads/2021/03/stack-overflow-for-teams.png')
+    await ctx.response.send_message(embed=embed)
+
 
 # Python Lists
 @bot.tree.command(name="lstpy", description="Bot commands")
@@ -177,6 +214,9 @@ async def lstcommand(ctx):
     embed.add_field(name="คลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_lists_methods.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
+
+
+
 
 @bot.tree.command(name="strmeth_py", description="Bot commands")
 async def lstcommand(ctx):
@@ -191,6 +231,11 @@ async def lstcommand(ctx):
     embed.add_field(name="อยากรู้คำสั่ง String Methods เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_ref_string.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
+
+
+
+
+
 
 
 
