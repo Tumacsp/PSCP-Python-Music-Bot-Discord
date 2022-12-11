@@ -237,7 +237,7 @@ async def lstcommand(ctx):
 
 
 
-
+# Python Strings
 @bot.tree.command(name="strmeth_py", description="Bot commands")
 async def lstcommand(ctx):
     embed = Embed(title="Python String Methods", description="เป็นคำสั่ง built-in ที่สามารถนำมาใช้กับ String ได้", color=0xFF0046)
@@ -252,6 +252,7 @@ async def lstcommand(ctx):
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
     await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
+
 
 # Python Set Methods
 @bot.tree.command(name="setmeth_py", description="Bot commands")
