@@ -5,7 +5,7 @@ import youtube_dl
 import datetime
 from song import*
 
-TOKEN = ''
+TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.GGbOS0.5ZIYK1KSP3g8NEwBkdLyCqKX1-3wsqPBQ_9k1I'
 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
@@ -168,7 +168,7 @@ async def on_message(message):
 # /////////////// คำสั่ง python //////////////////
 
 # Python Lists
-@bot.tree.command(name="lstpy", description="Bot commands") 
+@bot.tree.command(name="lstpy", description="Bot commands")
 async def lstcommand(ctx):
     embed = Embed(title="Python List []", description="เป็นข้อมูลแบบมีลำดับรวมข้อมูลได้หลายประเภท", color=0xFF0046)
     embed.add_field(name='mylist = ["coconut", 1, 1.26]', value="List เก็บข้อมูลเป็น index ไอเทมแรกเริ่มที่ 0 ", inline=False)
@@ -178,6 +178,19 @@ async def lstcommand(ctx):
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
 
+@bot.tree.command(name="strmeth_py", description="Bot commands")
+async def lstcommand(ctx):
+    embed = Embed(title="Python String Methods", description="เป็นคำสั่ง built-in ที่สามารถนำมาใช้กับ String ได้", color=0xFF0046)
+    embed.add_field(name='.capitalize()', value="จะเปลี่ยนแค่ตัวอักษรตัวแรกเป็นตัวใหญ่", inline=False)
+    embed.add_field(name='.swapcase()', value="จะเปลี่ยนทุกตัวอักษรที่เป็นตัวใหญ่เป็นเล็ก และเล็กเป็นใหญ่ \nเช่น ABcd ---> abCD", inline=False)
+    embed.add_field(name=".upper() ", value="จะเปลี่ยนทุกตัวเป็นตัวใหญ่ เช่น abcd ---> ABCD", inline=False)
+    embed.add_field(name=".lower() ", value="จะเปลี่ยนทุกตัวอักษรเป็นตัวเล็ก เช่น ABCD ---> abcd", inline=False)
+    embed.add_field(name=".casefold()", value="จะเปลี่ยนทุกตัวอักษรเป็นตัวเล็กเหมือนกับ .lower() \nแต่จะเปลี่ยนตัวอักษรประเภทอื่นด้วย", inline=False)
+    embed.add_field(name=".split() ", value="คำสั่งนี้จะแยกตัวคั่นที่ระบุไว้ และส่งกลับเป็น List", inline=False)
+    embed.add_field(name=".isnumeric() ", value="จะเช็คว่าทุกตัว input ที่ใส่ไปนั้นเป็นเลขทั้งหมดหรือไม่ \nเช่น ถ้าใช้จะ return True ถ้าไม่จะ return False", inline=False)
+    embed.add_field(name="อยากรู้คำสั่ง String Methods เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_ref_string.asp", inline=False)
+    embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
+    await ctx.response.send_message(embed=embed)
 
 
 
