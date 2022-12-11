@@ -4,7 +4,7 @@ from discord import Embed
 import youtube_dl
 from song import*
 
-TOKEN = ''
+TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.G2CUe0.Tq39LNty7gK_uKIu44JlbzBF0XdgVjVLZebR_A'
 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
@@ -26,7 +26,7 @@ async def on_member_join(member):
     channel = bot.get_channel(721276405480030321) # ส่งที่ห้องไอดีนี้
     # await channel.send()
     embed = discord.Embed(title=f"👋 Hi {member}  \n🎊 Welcome To My Server!", description=f"Welcome {member.mention}! Enjoy your stay here.", color=0xFF0046)
-    embed.add_field(name="หากสนใจเรื่องอะไร ❓", value="👉  พิมพ์ '...py' หรือ '/help ' ", inline=False)
+    embed.add_field(name="หากสนใจเรื่องอะไร ❓", value="👉  ```พิมพ์ '...py' หรือ '/help```' ", inline=False)
     embed.set_image(url='https://media.tenor.com/LDuF2jVabwoAAAAC/banner-welcome.gif') # รูป welcome
     await channel.send(embed=embed)
 
@@ -93,8 +93,9 @@ async def play(ctx, url):
     # Embed เล่นเพลง
     embed = Embed(title="🎶Now playing🎶", color=0xFF0046)
     embed.add_field(name=f"Music: {title}", value="—————————————————————————————", inline=False)
-    embed.add_field(name="🕘| Duration", value=f"{minute} นาที | {second} วินาที", inline=True)
-    embed.add_field(name="👀| Views", value=f"การดู {view} ครั้ง | เมื่อ {date}", inline=True)
+    embed.add_field(name="🕘| Duration", value=f"```0{minute}:{second} ```", inline=True)
+    embed.add_field(name="👀| Views", value=f"```ดู {view} ครั้ง```", inline=True)
+    embed.add_field(name="📅| Date", value=f"```เมื่อ {date}```", inline=True)
     embed.set_thumbnail(url=thumb) # รูปเล็ก
     embed.set_footer(text='Bot Music Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
     await ctx.channel.send(embed=embed)
