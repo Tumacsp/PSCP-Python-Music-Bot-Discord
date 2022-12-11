@@ -32,7 +32,7 @@ async def on_member_join(member):
     await channel.send(embed=embed)
 
 @bot.event
-async def on_member_remove(member):
+async def on_member_remove(member): #แจ้งคนออกเซิฟ
     channel = bot.get_channel(721276405480030321) # ส่งที่ห้องไอดีนี้
     # await channel.send()
     embed = discord.Embed(title=f"👋 Bye Bye {member}  \n🎊 Bye", description=f"Bye {member.mention}! Enjoy your stay here.", color=0xFF0046)
@@ -155,16 +155,12 @@ async def stop(ctx):
 @bot.event
 async def on_message(message):
     mes_user = message.content # กำหนดเป็นตัวพิมเล็ก
-    if mes_user == 'bookpy':
-        await message.channel.send('ลองดูนี่สิ!! 👇')
-        Embed = discord.Embed(title="แนะนำหนังสือ Python 🐍", description="แนะนำการเขียนโปรแกรม Python สำหรับผู้เริ่มต้น", color=0xFF0046)
-        Embed.add_field(name="Think Python", value="How to Think Like a Computer Scientist", inline=False)
-        Embed.add_field(name="คลิกดูได้ที่นี่", value="👉  https://greenteapress.com/thinkpython2/thinkpython2.pdf", inline=False)
-        Embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
-        Embed.set_image(url='https://i.imgur.com/qYPNY8d.png')
-        await message.channel.send(embed=Embed)
-        # embed คือป้าย ทำให้การเรียกใช้งานดูสวย ดูดีมากขึ้น
-        await message.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ "...py" หรือ "/help"')
+    tmp1 = datetime.datetime.now()
+    txtsend = tmp1.strftime(" %d %B %Y %H:%M:%S")
+    if mes_user == "hello":
+        await message.channel.send('สวัสดี')
+    elif mes_user[0:] == "กี่โมง":
+        await message.channel.send(txtsend)
     await bot.process_commands(message) # ทำคำสั่ง event แล้วไปทำคำสั่ง bot command ต่อ
 
 
@@ -176,7 +172,9 @@ async def on_message(message):
 async def lstcommand(ctx):
     embed = Embed(title="Python List []", description="เป็นข้อมูลแบบมีลำดับรวมข้อมูลได้หลายประเภท", color=0xFF0046)
     embed.add_field(name='mylist = ["coconut", 1, 1.26]', value="List เก็บข้อมูลเป็น index ไอเทมแรกเริ่มที่ 0 ", inline=False)
-    embed.add_field(name="คลิกดูได้ที่นี่", value="👉  https://www.w3schools.com/python/python_lists.asp", inline=False)
+    embed.add_field(name="คลิกดูได้ที่นี่ ", value="👉https://www.w3schools.com/python/python_lists.asp", inline=False)
+    embed.add_field(name='List Methods', value="List มี built-in ให้ใช้ ", inline=False)
+    embed.add_field(name="คลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_lists_methods.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
 
