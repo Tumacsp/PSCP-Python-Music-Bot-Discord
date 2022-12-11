@@ -7,7 +7,7 @@ from song import*
 
 
 # token bot
-TOKEN = ''
+TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.GZ__0Y.cTzevg5sjfg6dtEyA_49bdnYkG9WrNfLLISKcU'
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
@@ -209,12 +209,12 @@ async def bookcommand(ctx):
 @bot.tree.command(name="startpy", description="ขั้นตอนการเขียนโปรแกรม Python") 
 async def startcommand(ctx):
     await ctx.channel.send('คุณจะเริ่มเขียน Python ยังไงหน่ะหรอ? ลองดูนี่สิ!! 👇')
-    Embed = discord.Embed(title="Python Getting Started", description="ขั้นตอนการเขียนโปรแกรม Python", color=0xFF0046)
-    Embed.add_field(name="Python Install", value="👉  https://www.python.org/downloads/", inline=False)
-    Embed.add_field(name="Let's write our first Python", value="ค้นหา python idle และพิมพ์คำสั่งแรก \n - print('Hello, World!')", inline=False)
-    Embed.add_field(name="ศึกษาเพิ่มเติมที่นี่!!", value="👉 https://www.w3schools.com/python/default.asp", inline=False)
-    Embed.set_thumbnail(url='https://logos-download.com/wp-content/uploads/2016/10/Python_logo_icon.png')
-    await ctx.channel.send(embed=Embed)
+    embed = Embed(title="Python Getting Started", description="ขั้นตอนการเขียนโปรแกรม Python", color=0xFF0046)
+    embed.add_field(name="Python Install", value="👉  https://www.python.org/downloads/", inline=False)
+    embed.add_field(name="Let's write our first Python", value="ค้นหา python idle และพิมพ์คำสั่งแรก \n - print('Hello, World!')", inline=False)
+    embed.add_field(name="ศึกษาเพิ่มเติมที่นี่!!", value="👉 https://www.w3schools.com/python/default.asp", inline=False)
+    embed.set_thumbnail(url='https://logos-download.com/wp-content/uploads/2016/10/Python_logo_icon.png')
+    await ctx.channel.send(embed=embed)
 
     await ctx.channel.send(file=discord.File('img/testpy.png'))
     await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
