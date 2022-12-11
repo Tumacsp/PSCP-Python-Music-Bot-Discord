@@ -54,11 +54,11 @@ async def on_voice_state_update(member, before, after):
     txtsend = tmp1.strftime(" %d %B %Y %H:%M:%S")
     if before.channel != after.channel:
         if after.channel is not None and after.channel.id == int(721276405480030322):
-            embed = discord.Embed(title=f"👋 {member} Join \n  {txtsend}", color=0x99FF99)
+            embed = discord.Embed(title=f"👋 {member.author.name} Join \n  {txtsend}", color=0x99FF99)
             await channel.send(embed=embed)
     if before.channel != after.channel:
         if before.channel is not None and before.channel.id == int(721276405480030322):
-            embed = discord.Embed(title=f"👋 {member} Leave \n  {txtsend}", color=0xFF0046)
+            embed = discord.Embed(title=f"👋 {member.author.name} Leave \n  {txtsend}", color=0xFF0046)
             await channel.send(embed=embed)
 
 
