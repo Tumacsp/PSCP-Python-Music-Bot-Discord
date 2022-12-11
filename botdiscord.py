@@ -5,7 +5,7 @@ import youtube_dl
 import datetime
 from song import*
 
-TOKEN = ''
+TOKEN = 'MTAzOTU4ODA2MDU3NDI1NzIyMw.GnpldB.juYttyr9cv6cv4U0S6v5caWBHHeb-oxDg0-wFk'
 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
@@ -54,8 +54,8 @@ async def on_voice_state_update(member, before, after): #แจ้งคนเ�
 
 
 @bot.tree.command(name="hello", description="Replies with Hello")
-async def hellocommand(interaction: discord.Interaction):
-    await interaction.response.send_message("Hello It's me BUT DISCORD")
+async def hellocommand(ctx):
+    await ctx.response.send_message("Hello It's me BUT DISCORD")
 
 
 
@@ -187,8 +187,8 @@ async def lstcommand(ctx):
 async def musiccommand(ctx):
     embed = Embed(title="Help me! - Help Music", color=0xff2450)
     embed.add_field(name="Bot commands", value="```/help```", inline=True)
-    embed.add_field(name="Hello It's me", value="```/hello```", inline=True)
-    embed.add_field(name="Yes, the bot is cool.", value="```/bot```", inline=True)
+    embed.add_field(name="Hello", value="```/hello```", inline=True)
+    embed.add_field(name="Bot is cool.", value="```/bot```", inline=True)
     embed.add_field(name="play music", value="```/play```", inline=True)
     embed.add_field(name="stop music", value="```/stop```", inline=True)
     embed.add_field(name="pause music", value="```/pause```", inline=True)
@@ -196,6 +196,7 @@ async def musiccommand(ctx):
     embed.add_field(name="Bot join", value="```/join```", inline=True)
     embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
     await ctx.response.send_message(embed=embed)
+
 
 
 @bot.tree.command(name="helppython", description="Bot commands")
@@ -207,6 +208,5 @@ async def pythoncommand(ctx):
     embed.add_field(name="Python Sets", value="```/setpy```", inline=True)
     embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
     await ctx.response.send_message(embed=embed)
-
 
 bot.run(TOKEN)
