@@ -187,7 +187,7 @@ async def lstcommand(ctx):
 
 @bot.tree.command(name="helpmusic", description="Bot commands")
 async def musiccommand(ctx):
-    embed = Embed(title="Help me!", color=0xff2450)
+    embed = Embed(title="Help me! - Help Music", color=0xff2450)
     embed.add_field(name="Bot commands", value="```/help```", inline=True)
     embed.add_field(name="Hello It's me", value="```/hello```", inline=True)
     embed.add_field(name="Yes, the bot is cool.", value="```/bot```", inline=True)
@@ -196,6 +196,17 @@ async def musiccommand(ctx):
     embed.add_field(name="pause music", value="```/pause```", inline=True)
     embed.add_field(name="Bot leave", value="```/leave```", inline=True)
     embed.add_field(name="Bot join", value="```/join```", inline=True)
+    embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
+    await ctx.response.send_message(embed=embed)
+
+
+@bot.tree.command(name="helppython", description="Bot commands")
+async def pythoncommand(ctx):
+    embed = Embed(title="Help me! - Help Python Function", color=0xff2450)
+    embed.add_field(name="Bot commands", value="```/helppy```", inline=True)
+    embed.add_field(name="Python Lists", value="```/listpy```", inline=True)
+    embed.add_field(name="Python Dictionaries", value="```/dictpy```", inline=True)
+    embed.add_field(name="Python Sets", value="```/setpy```", inline=True)
     embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
     await ctx.response.send_message(embed=embed)
 
