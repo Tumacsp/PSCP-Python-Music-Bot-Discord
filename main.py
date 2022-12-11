@@ -238,6 +238,21 @@ async def lstcommand(ctx):
     await ctx.response.send_message(embed=embed)
 
 
+@bot.tree.command(name="math_py", description="Bot commands")
+async def mathcommand(ctx):
+    embed = Embed(title="Math", description="เป็นคำสั่ง built-in ที่สามารถนำมาใช้กับ String ได้", color=0xFF0046)
+    embed.add_field(name='min()', value="คืนค่าค่าต่ำสุดในข้อมูลนั้น \n min(6, 4, 7) ---> 4", inline=False)
+    embed.add_field(name='max()', value="คืนค่าค่ามากสุดในข้อมูลนั้น \n min(6, 4, 7) ---> 7", inline=False)
+    embed.add_field(name="abs() ", value="คืนค่าข้อมูลเป็นจำนวนเต็มบวก \n abs(-5.5) ---> 5.5", inline=False)
+    embed.add_field(name="pow(x, y) ", value="คืนค่า x ยกกำลัง y \n pow(2, 3) ---> 8", inline=False)
+    embed.add_field(name="Math module", value="เป็นโมดูลที่ต้อง import math เข้ามา", inline=False)
+    embed.add_field(name="math.ceil() ", value="คืนค่าโดยการปัดเลขขึ้น \n math.celi(5.6) ---> 6", inline=False)
+    embed.add_field(name="math.floor() ", value="คืนค่าโดยการปัดเลขลง \n math.celi(5.6) ---> 5", inline=False)
+    embed.add_field(name=" math.sqrt() ", value="คืนค่ารากที่สอง \n math.sqrt(64) ---> 8.00", inline=False)
+    embed.add_field(name="อยากรู้คำสั่ง String Methods เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_ref_string.asp", inline=False)
+    embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
+    await ctx.response.send_message(embed=embed)
+
 
 
 
