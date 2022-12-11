@@ -153,7 +153,6 @@ async def play(ctx, url):
     await ctx.channel.send(embed=embed)
 
 
-
 # หยุดเพลง
 @bot.command()
 async def pause(ctx):  # หยุดเพลงไว้ก่อนเดี๋ยวฟังต่อนะ
@@ -182,15 +181,6 @@ async def stop(ctx):
     await ctx.send("Stop ⛔")
 
 
-
-
-
-
-
-
-
-
-
 # /////////////// คำสั่ง python //////////////////
 
 # StackOverFlow
@@ -205,24 +195,17 @@ async def lstcommand(ctx):
 
 
 # Python Lists
-@bot.tree.command(name="lstpy", description="Bot commands")
+@bot.tree.command(name="lstmeth_py", description="Bot commands")
 async def lstcommand(ctx):
     embed = Embed(title="Python List []", description="เป็นข้อมูลแบบมีลำดับรวมข้อมูลได้หลายประเภท", color=0xFF0046)
     embed.add_field(name='mylist = ["coconut", 1, 1.26]', value="List เก็บข้อมูลเป็น index ไอเทมแรกเริ่มที่ 0 ", inline=False)
     embed.add_field(name="คลิกดูได้ที่นี่ ", value="👉https://www.w3schools.com/python/python_lists.asp", inline=False)
     embed.add_field(name='List Methods', value="List มี built-in ให้ใช้ ", inline=False)
-    embed.add_field(name='.append()', value="เพิ่มข้อมูลไปยังตำแหน่งสุดท้ายของ list ", inline=False)
-    embed.add_field(name='.count()', value="คืนค่าจำนวนที่ระบุไว้", inline=False)
-    embed.add_field(name='.pop()', value="ลบข้อมูลตามตำแหน่งที่ระบุไว้ ", inline=False)
-    embed.add_field(name='.remove()', value="ลบข้อมูลตามสิ่งที่ระบุไว้ ", inline=False)
-    embed.add_field(name='.sort()', value="จัดเรียงข้อมูลใน list ", inline=False)
-    embed.add_field(name="คลิกดูได้ที่นี่เพิ่มเติมที่ ", value="👉 https://www.w3schools.com/python/python_lists_methods.asp", inline=False)
+    embed.add_field(name="คลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_lists_methods.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
 
-
-
-
+# Python String Methods
 @bot.tree.command(name="strmeth_py", description="Bot commands")
 async def lstcommand(ctx):
     embed = Embed(title="Python String Methods", description="เป็นคำสั่ง built-in ที่สามารถนำมาใช้กับ String ได้", color=0xFF0046)
@@ -237,11 +220,17 @@ async def lstcommand(ctx):
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
 
-
-
-
-
-
+# Python Set Methods
+@bot.tree.command(name="setmeth_py", description="Bot commands")
+async def lstcommand(ctx):
+    embed = Embed(title="Python String Methods", description="เป็นคำสั่ง built-in ที่สามารถนำมาใช้กับ String ได้", color=0xFF0046)
+    embed.add_field(name='.add()', value="เพิ่มค่าเข้าไปในตัว Set ที่เราจะใช้", inline=False)
+    embed.add_field(name='intersection()', value="จะดึงค่าที่เหมือนกันออกมา", inline=False)
+    embed.add_field(name=".union() ", value="จะดึงค่าที่ต่างกันออกมา", inline=False)
+    embed.add_field(name=".update() ", value="จะเพิ่มตัว Set ที่เลือกเข้าไปใน Set ที่เรากำหนดไว้", inline=False)
+    embed.add_field(name="อยากรู้คำสั่ง Set Methods เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_sets_methods.asp", inline=False)
+    embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
+    await ctx.response.send_message(embed=embed)
 
 
 #//////////////// เมนู Help ///////////////////
