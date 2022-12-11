@@ -7,7 +7,7 @@ from song import*
 
 
 # token bot
-TOKEN = '-'
+TOKEN = ''
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
@@ -188,20 +188,25 @@ async def stop(ctx):
 async def lstcommand(ctx):
     embed = Embed(title="StackOverFlow", description="เว็บไซต์ Stack OverFlow เหมาะสำหรับนักเขียนโปรแกรมทุกคน", color=0xFF0046)
     embed.add_field(name='Stack OverFlow คือเว็บอะไร', value="เว็บ ถาม - ตอบ เกี่ยวกับปัญหาการเขียนโปรแกรมทุกภาษา ที่ใหญ่ที่สุดในโลก", inline=False)
-    embed.add_field(name="คลิกดูได้ที่นี่👇", value="https://stackoverflow.com/", inline=False)
+    embed.add_field(name="คลิกดูได้ที่นี่ 👇", value="https://stackoverflow.com/", inline=False)
     embed.set_thumbnail(url='https://i1.sndcdn.com/avatars-000708374642-k6d7gm-t500x500.jpg')
     embed.set_image(url='https://techcrunch.com/wp-content/uploads/2021/03/stack-overflow-for-teams.png')
     await ctx.response.send_message(embed=embed)
 
 
-# Python Lists
+# Python Lists Methods
 @bot.tree.command(name="lstmeth_py", description="Bot commands")
 async def lstcommand(ctx):
     embed = Embed(title="Python List []", description="เป็นข้อมูลแบบมีลำดับรวมข้อมูลได้หลายประเภท", color=0xFF0046)
     embed.add_field(name='mylist = ["coconut", 1, 1.26]', value="List เก็บข้อมูลเป็น index ไอเทมแรกเริ่มที่ 0 ", inline=False)
-    embed.add_field(name="คลิกดูได้ที่นี่ ", value="👉https://www.w3schools.com/python/python_lists.asp", inline=False)
+    embed.add_field(name="คลิกดูได้ที่นี่ 👇", value="https://www.w3schools.com/python/python_lists.asp", inline=False)
     embed.add_field(name='List Methods', value="List มี built-in ให้ใช้ ", inline=False)
-    embed.add_field(name="คลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_lists_methods.asp", inline=False)
+    embed.add_field(name='.append()', value="เพิ่มข้อมูลไปยังตำแหน่งสุดท้ายของ list ", inline=False)
+    embed.add_field(name='.count()', value="คืนค่าจำนวนที่ระบุไว้", inline=False)
+    embed.add_field(name='.pop()', value="ลบข้อมูลตามตำแหน่งที่ระบุไว้ ", inline=False)
+    embed.add_field(name='.remove()', value="ลบข้อมูลตามสิ่งที่ระบุไว้ ", inline=False)
+    embed.add_field(name='.sort()', value="จัดเรียงข้อมูลใน list ", inline=False)
+    embed.add_field(name="คลิกดูได้ที่นี่ 👇", value="https://www.w3schools.com/python/python_lists_methods.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
 
@@ -214,9 +219,9 @@ async def lstcommand(ctx):
     embed.add_field(name=".upper() ", value="จะเปลี่ยนทุกตัวเป็นตัวใหญ่ เช่น abcd ---> ABCD", inline=False)
     embed.add_field(name=".lower() ", value="จะเปลี่ยนทุกตัวอักษรเป็นตัวเล็ก เช่น ABCD ---> abcd", inline=False)
     embed.add_field(name=".casefold()", value="จะเปลี่ยนทุกตัวอักษรเป็นตัวเล็กเหมือนกับ .lower() \nแต่จะเปลี่ยนตัวอักษรประเภทอื่นด้วย", inline=False)
-    embed.add_field(name=".split() ", value="คำสั่งนี้จะแยกตัวคั่นที่ระบุไว้ และส่งกลับเป็น List", inline=False)
+    embed.add_field(name=".split() ", value="คำสั่งนี้จะแยกตัวคั่นที่ระบุไว้ และ return ค่าเป็น List", inline=False)
     embed.add_field(name=".isnumeric() ", value="จะเช็คว่าทุกตัว input ที่ใส่ไปนั้นเป็นเลขทั้งหมดหรือไม่ \nเช่น ถ้าใช้จะ return True ถ้าไม่จะ return False", inline=False)
-    embed.add_field(name="อยากรู้คำสั่ง String Methods เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_ref_string.asp", inline=False)
+    embed.add_field(name="อยากรู้คำสั่ง String Methods เพิ่มเติมคลิกดูได้ที่นี่ 👇", value="https://www.w3schools.com/python/python_ref_string.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
 
@@ -228,7 +233,7 @@ async def lstcommand(ctx):
     embed.add_field(name='intersection()', value="จะดึงค่าที่เหมือนกันออกมา", inline=False)
     embed.add_field(name=".union() ", value="จะดึงค่าที่ต่างกันออกมา", inline=False)
     embed.add_field(name=".update() ", value="จะเพิ่มตัว Set ที่เลือกเข้าไปใน Set ที่เรากำหนดไว้", inline=False)
-    embed.add_field(name="อยากรู้คำสั่ง Set Methods เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_sets_methods.asp", inline=False)
+    embed.add_field(name="อยากรู้คำสั่ง Set Methods เพิ่มเติมคลิกดูได้ที่นี่ 👇", value="https://www.w3schools.com/python/python_sets_methods.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
 
