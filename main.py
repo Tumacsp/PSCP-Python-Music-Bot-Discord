@@ -205,6 +205,21 @@ async def bookcommand(ctx):
     await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
 
 
+# ขั้นตอนการเขียนโปรแกรม Python
+@bot.tree.command(name="startpy", description="ขั้นตอนการเขียนโปรแกรม Python") 
+async def startcommand(ctx):
+    await ctx.channel.send('คุณจะเริ่มเขียน Python ยังไงหน่ะหรอ? ลองดูนี่สิ!! 👇')
+    Embed = discord.Embed(title="Python Getting Started", description="ขั้นตอนการเขียนโปรแกรม Python", color=0xFF0046)
+    Embed.add_field(name="Python Install", value="👉  https://www.python.org/downloads/", inline=False)
+    Embed.add_field(name="Let's write our first Python", value="ค้นหา python idle และพิมพ์คำสั่งแรก \n - print('Hello, World!')", inline=False)
+    Embed.add_field(name="ศึกษาเพิ่มเติมที่นี่!!", value="👉 https://www.w3schools.com/python/default.asp", inline=False)
+    Embed.set_thumbnail(url='https://logos-download.com/wp-content/uploads/2016/10/Python_logo_icon.png')
+    await ctx.channel.send(embed=Embed)
+
+    await ctx.channel.send(file=discord.File('img/testpy.png'))
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
+   
+
 
 # StackOverFlow
 @bot.tree.command(name="stack_of", description="เว็บไซต์ StackOverFlow") 
@@ -215,7 +230,7 @@ async def lstcommand(ctx):
     embed.set_thumbnail(url='https://i1.sndcdn.com/avatars-000708374642-k6d7gm-t500x500.jpg')
     embed.set_image(url='https://techcrunch.com/wp-content/uploads/2021/03/stack-overflow-for-teams.png')
     await ctx.response.send_message(embed=embed)
-    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
 
 
 # Python Lists
@@ -233,7 +248,7 @@ async def lstcommand(ctx):
     embed.add_field(name="คลิกดูได้ที่นี่เพิ่มเติมที่ ", value="👉 https://www.w3schools.com/python/python_lists_methods.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
-    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
 
 
 # Python String Methods
@@ -250,7 +265,7 @@ async def lstcommand(ctx):
     embed.add_field(name="อยากรู้คำสั่ง String Methods เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_ref_string.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
-    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
 
 
 # Python Set Methods
@@ -264,7 +279,7 @@ async def lstcommand(ctx):
     embed.add_field(name="อยากรู้คำสั่ง Set Methods เพิ่มเติมคลิกดูได้ที่นี่ 👇", value="https://www.w3schools.com/python/python_sets_methods.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
-    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
 
 
 # Python Math Methods
@@ -282,7 +297,7 @@ async def mathcommand(ctx):
     embed.add_field(name="อยากรู้คำสั่ง Math เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_math.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
-    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
 
 
 
