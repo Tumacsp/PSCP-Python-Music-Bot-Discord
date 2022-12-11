@@ -271,7 +271,7 @@ async def lstcommand(ctx):
 # Python Set Methods
 @bot.tree.command(name="setmeth_py", description="Bot commands")
 async def lstcommand(ctx):
-    embed = Embed(title="Python String Methods", description="เป็นคำสั่ง built-in ที่สามารถนำมาใช้กับ Set เท่านั้น", color=0xFF0046)
+    embed = Embed(title="Python Set Methods", description="เป็นคำสั่ง built-in ที่สามารถนำมาใช้กับ Set เท่านั้น", color=0xFF0046)
     embed.add_field(name='.add()', value="เพิ่มค่าเข้าไปในตัว Set ที่เราจะใช้", inline=False)
     embed.add_field(name='intersection()', value="จะดึงค่าที่เหมือนกันออกมา", inline=False)
     embed.add_field(name=".union() ", value="จะดึงค่าที่ต่างกันออกมา", inline=False)
