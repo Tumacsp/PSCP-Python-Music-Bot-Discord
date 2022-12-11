@@ -7,7 +7,7 @@ from song import*
 
 
 # token bot
-TOKEN = ''
+TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.G3p3TT.RXKLQOI_0kKqr7HiLvUaNwVsbLeWqrf1pXIdFo'
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
@@ -73,7 +73,7 @@ async def on_message(message):
     elif mes_user[0:] == "กี่โมง":
         await message.channel.send(txtsend)
     elif mes_user == 'hi bot':
-        await message.channel.send(str(message.author.name) + 'Hello') # เรียกชื่อผู้ใช้ + hello
+        await message.channel.send('Hello, ' + str(message.author.name)) # เรียกชื่อผู้ใช้ + hello
     await bot.process_commands(message) # ทำคำสั่ง event แล้วไปทำคำสั่ง bot command ต่อ
 
 
@@ -206,7 +206,6 @@ async def bookcommand(ctx):
 
 
 
-
 # StackOverFlow
 @bot.tree.command(name="stack_of", description="เว็บไซต์ StackOverFlow") 
 async def lstcommand(ctx):
@@ -255,13 +254,14 @@ async def lstcommand(ctx):
     await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
 
 
+
 @bot.tree.command(name="math_py", description="Bot commands")
 async def mathcommand(ctx):
     embed = Embed(title="Math", description="เป็นคำสั่ง built-in ที่สามารถนำมาใช้กับ String ได้", color=0xFF0046)
     embed.add_field(name='min()', value="คืนค่าค่าต่ำสุดในข้อมูลนั้น \n min(6, 4, 7) ---> 4", inline=False)
     embed.add_field(name='max()', value="คืนค่าค่ามากสุดในข้อมูลนั้น \n min(6, 4, 7) ---> 7", inline=False)
     embed.add_field(name="abs() ", value="คืนค่าข้อมูลเป็นจำนวนเต็มบวก \n abs(-5.5) ---> 5.5", inline=False)
-    embed.add_field(name="pow(x, y) ", value="คืนค่า x ยกกำลัง y \n pow(2, 3) ---> 8", inline=False)
+    embed.add_field(name="pow(x, y) ", value="คืนค่า x ยกกำลัง y \n pow(2, 3) ---> 8\n------------------------------", inline=False)
     embed.add_field(name="Math module", value="เป็นโมดูลที่ต้อง import math เข้ามา", inline=False)
     embed.add_field(name="math.ceil() ", value="คืนค่าโดยการปัดเลขขึ้น \n math.celi(5.6) ---> 6", inline=False)
     embed.add_field(name="math.floor() ", value="คืนค่าโดยการปัดเลขลง \n math.celi(5.6) ---> 5", inline=False)
@@ -291,7 +291,6 @@ async def musiccommand(ctx):
     embed.add_field(name="Bot join", value="```/join```", inline=True)
     embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
     await ctx.response.send_message(embed=embed)
-
 
 
 @bot.tree.command(name="helppython", description="Bot commands")
