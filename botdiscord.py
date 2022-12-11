@@ -153,19 +153,19 @@ async def lstcommand(ctx):
 
 
 
-#//////////////// แมนู Help ///////////////////
+#//////////////// เมนู Help ///////////////////
 
 @bot.tree.command(name="help", description="Bot commands")
 async def hellocommand(ctx):
     embed = Embed(title="Help me!", color=0xff2450)
-    embed.add_field(name="/help", value="Bot commands", inline=False)
-    embed.add_field(name="/hello", value="Hello It's me", inline=False)
-    embed.add_field(name="/bot", value="Yes, the bot is cool.", inline=False)
-    embed.add_field(name="/play", value="play music", inline=False)
-    embed.add_field(name="/stop", value="stop music", inline=False)
-    embed.add_field(name="/pause", value="pause music", inline=False)
-    embed.add_field(name="/leave", value="Bot leave", inline=False)
-    embed.add_field(name="/join", value="Bot join", inline=False)
+    embed.add_field(name="/help", value='''Bot commands''', inline=True)
+    embed.add_field(name="/hello", value='''Hello It's me''', inline=True)
+    embed.add_field(name="/bot", value='''Yes, the bot is cool.''', inline=True)
+    embed.add_field(name="/play", value='''play music''', inline=True)
+    embed.add_field(name="/stop", value='''stop music''' inline=True)
+    embed.add_field(name="/pause", value='''pause music''', inline=True)
+    embed.add_field(name="/leave", value='''Bot leave''', inline=True)
+    embed.add_field(name="/join", value='''Bot join''', inline=True)
     await ctx.response.send_message(embed=embed)
 
 
