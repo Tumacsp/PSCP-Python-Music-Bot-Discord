@@ -163,18 +163,18 @@ async def lstcommand(ctx):
 
 #//////////////// เมนู Help ///////////////////
 
-@bot.tree.command(name="help", description="Bot commands")
-async def hellocommand(ctx):
-    embed = Embed(title="Help me!", color=0xff2450)
-    embed.add_field(name="/help", value='''Bot commands''', inline=True)
-    embed.add_field(name="/hello", value='''Hello It's me''', inline=True)
-    embed.add_field(name="/bot", value='''Yes, the bot is cool.''', inline=True)
-    embed.add_field(name="/play", value='''play music''', inline=True)
-    embed.add_field(name="/stop", value='''stop music''',inline=True)
-    embed.add_field(name="/pause", value='''pause music''', inline=True)
-    embed.add_field(name="/leave", value='''Bot leave''', inline=True)
-    embed.add_field(name="/join", value='''Bot join''', inline=True)
+@bot.tree.command(name="helpmusic", description="Bot commands")
+async def musiccommand(ctx):
+    embed = Embed(title="Help Music!", color=0xff2450)
+    embed.add_field(name="Bot command", value="```/help```", inline=True)
+    embed.add_field(name="Hello It's m", value="```/hello```", inline=True)
+    embed.add_field(name="Yes, the bot is cool", value="```/bot```", inline=True)
+    embed.add_field(name="play musi", value="```/play```", inline=True)
+    embed.add_field(name="stop musi", value="```/stop", inline=True)
+    embed.add_field(name="pause musi", value="```/pause", inline=True)
+    embed.add_field(name="Bot leav", value="```/leave", inline=True)
+    embed.add_field(name="Bot joi", value="```/join", inline=True)
+    embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
     await ctx.response.send_message(embed=embed)
-
 
 bot.run(TOKEN)
