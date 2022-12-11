@@ -211,7 +211,12 @@ async def lstcommand(ctx):
     embed.add_field(name='mylist = ["coconut", 1, 1.26]', value="List เก็บข้อมูลเป็น index ไอเทมแรกเริ่มที่ 0 ", inline=False)
     embed.add_field(name="คลิกดูได้ที่นี่ ", value="👉https://www.w3schools.com/python/python_lists.asp", inline=False)
     embed.add_field(name='List Methods', value="List มี built-in ให้ใช้ ", inline=False)
-    embed.add_field(name="คลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_lists_methods.asp", inline=False)
+    embed.add_field(name='.append()', value="เพิ่มข้อมูลไปยังตำแหน่งสุดท้ายของ list ", inline=False)
+    embed.add_field(name='.count()', value="คืนค่าจำนวนที่ระบุไว้", inline=False)
+    embed.add_field(name='.pop()', value="ลบข้อมูลตามตำแหน่งที่ระบุไว้ ", inline=False)
+    embed.add_field(name='.remove()', value="ลบข้อมูลตามสิ่งที่ระบุไว้ ", inline=False)
+    embed.add_field(name='.sort()', value="จัดเรียงข้อมูลใน list ", inline=False)
+    embed.add_field(name="คลิกดูได้ที่นี่เพิ่มเติมที่ ", value="👉 https://www.w3schools.com/python/python_lists_methods.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
 
