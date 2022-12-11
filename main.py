@@ -54,11 +54,11 @@ async def on_voice_state_update(member, before, after):
     txtsend = tmp1.strftime(" %d %B %Y %H:%M:%S")
     if before.channel != after.channel:
         if after.channel is not None and after.channel.id == int(721276405480030322):
-            embed = discord.Embed(title=f"👋 {member} Join \n  {txtsend}", color=0xFF0046)
+            embed = discord.Embed(title=f"👋 {member} Join \n  {txtsend}", color=0x99FF99)
             await channel.send(embed=embed)
     if before.channel != after.channel:
         if before.channel is not None and before.channel.id == int(721276405480030322):
-            embed = discord.Embed(title=f"👋 {member} Leave \n  {txtsend}", color=0x99FF99)
+            embed = discord.Embed(title=f"👋 {member} Leave \n  {txtsend}", color=0xFF0046)
             await channel.send(embed=embed)
 
 
@@ -96,7 +96,6 @@ async def join(ctx):  # Join เออกจากห้องคุยเสี
     if ctx.author.voice:
         channel = ctx.message.author.voice.channel
         await channel.connect()
-        await ctx.send("Bot เข้าร่วมห้องเสียงแล้ว 😎")
         await ctx.send("--- พร้อมเปิดเพลงให้คุณแล้ว ---")
     else:
         # กรณีคนใช้คำสั่งไม่อยู่ในห้องเสียง555
@@ -107,7 +106,6 @@ async def join(ctx):  # Join เออกจากห้องคุยเสี
 async def leave(ctx):  # Leave ออกจากห้องคุยเสียง
     if ctx.voice_client:
         await ctx.guild.voice_client.disconnect()
-        await ctx.send("Bot ได้ออกจากห้องแล้ว👋")
     else:
         # กรณีคนใช้คำสั่งไม่อยู่ในห้องเสียง
         await ctx.send("Bot ไม่ได้อยู่ในห้องเสียง❌")
