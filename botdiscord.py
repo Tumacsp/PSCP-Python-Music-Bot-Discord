@@ -7,7 +7,7 @@ from song import*
 
 
 # token bot
-TOKEN = ''
+TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.GuhM3i.wXtYq5-6JdX8roJAWH7GMu9iSgHoOA5-_ZyYRg'
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
@@ -265,6 +265,7 @@ async def lstcommand(ctx):
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
 
+# Python Math Methods
 @bot.tree.command(name="math_py", description="Bot commands")
 async def mathcommand(ctx):
     embed = Embed(title="Math", description="เป็น built-in เกี่ยวกับคณิตศาสตร์", color=0xFF0046)
