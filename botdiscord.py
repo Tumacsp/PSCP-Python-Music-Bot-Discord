@@ -4,7 +4,7 @@ from discord import Embed
 import youtube_dl
 from song import*
 
-TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.G2CUe0.Tq39LNty7gK_uKIu44JlbzBF0XdgVjVLZebR_A'
+TOKEN = ''
 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
@@ -170,7 +170,7 @@ async def hellocommand(ctx):
     embed.add_field(name="/hello", value='''Hello It's me''', inline=True)
     embed.add_field(name="/bot", value='''Yes, the bot is cool.''', inline=True)
     embed.add_field(name="/play", value='''play music''', inline=True)
-    embed.add_field(name="/stop", value='''stop music''' inline=True)
+    embed.add_field(name="/stop", value='''stop music''',inline=True)
     embed.add_field(name="/pause", value='''pause music''', inline=True)
     embed.add_field(name="/leave", value='''Bot leave''', inline=True)
     embed.add_field(name="/join", value='''Bot join''', inline=True)
