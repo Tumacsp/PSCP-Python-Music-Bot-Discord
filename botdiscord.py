@@ -39,13 +39,14 @@ async def hellocommand(interaction: discord.Interaction):
 
 
 
-# เรียกบอทเข้าห้องคุย
+# เรียกบอทเข้าห้องคุย ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
 @bot.command()
 async def join(ctx):  # Join เออกจากห้องคุยเสียงของคนที่อยู่ใช้คำสั่ง
     if ctx.author.voice:
         channel = ctx.message.author.voice.channel
         await channel.connect()
-        await ctx.send("Bot เข้าร่วมแล้ว�")
+        await ctx.send("Bot เข้าร่วมห้องเสียงแล้ว 😎")
+        await ctx.send("--- พร้อมเปิดเพลงให้คุณแล้ว ---")
     else:
         # กรณีคนใช้คำสั่งไม่อยู่ในห้องเสียง555
         await ctx.send("คุณไม่ได้อยู่ในห้องเสียง❌")
@@ -60,25 +61,20 @@ async def leave(ctx):  # Leave ออกจากห้องคุยเสี�
         # กรณีคนใช้คำสั่งไม่อยู่ในห้องเสียง
         await ctx.send("Bot ไม่ได้อยู่ในห้องเสียง❌")
 
-        #### คำสั่งเปิดเพลง ####
+
+
+# ////////////// เล่นเพลง //////////////////////
 
 ydl_opts = {'format': 'bestaudio/best',
             'postprocessors': [{'key': 'FFmpegExtractAudio',
                                 'preferredcodec': 'mp3',
                                 'preferredquality': '192', }], }
-
-# ////////////// เล่นเพลง //////////////////////
+ffmpeg_options = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+# แก้บอทเล่นเพลงไม่จบ
 
 @bot.command(pass_context=True)
 async def play(ctx, url):
-    if (ctx.author.voice): # ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
-        channel = ctx.message.author.voice.channel
-        await channel.connect()
-        await ctx.send("Bot เข้าร่วมห้องเสียงแล้ว 😎")
-        await ctx.send("--- พร้อมเปิดเพลงให้คุณแล้ว ---")
-    else:
-        await ctx.send("คุณไม่ได้อยู่ในห้องเสียง❗")
-
+    # ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
     voice = ctx.voice_client # การเชื่อมต่อเสียงผู้ใช้
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         file = ydl.extract_info(url, download=False)  # ไม่ได้ download
@@ -96,12 +92,10 @@ async def play(ctx, url):
     await ctx.send(thumb) # รูปเพลง
 
     # Embed เล่นเพลง
-    await ctx.channel.send('-----------------------------')
-    embed = Embed(title="** Now playing**", description="", color=0xFF0046)
-    embed.add_field(name=f"**Music: **{title}", value="", inline=False)
-    embed.add_field(name="-------------------------------", value="", inline=False)
-    embed.set_image(url=thumb)
-    await ctx.send_message(embed=embed)
+    embed = Embed(title="🎶Now playing🎶", color=0xFF0046)
+    embed.add_field(name=f"Music: {title}", value="—————————————————————————————", inline=False)
+    embed.set_thumbnail(url=thumb) # รูป
+    await ctx.channel.send(embed=embed)
 
 
 
