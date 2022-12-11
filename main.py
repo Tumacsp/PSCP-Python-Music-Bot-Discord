@@ -259,7 +259,7 @@ async def lstcommand(ctx):
 
 @bot.tree.command(name="math_py", description="Bot commands")
 async def mathcommand(ctx):
-    embed = Embed(title="Math", description="เป็นคำสั่ง built-in ที่สามารถนำมาใช้กับ String ได้", color=0xFF0046)
+    embed = Embed(title="Math", description="เป็น built-in เกี่ยวกับคณิตศาสตร์", color=0xFF0046)
     embed.add_field(name='min()', value="คืนค่าค่าต่ำสุดในข้อมูลนั้น \n min(6, 4, 7) ---> 4", inline=False)
     embed.add_field(name='max()', value="คืนค่าค่ามากสุดในข้อมูลนั้น \n min(6, 4, 7) ---> 7", inline=False)
     embed.add_field(name="abs() ", value="คืนค่าข้อมูลเป็นจำนวนเต็มบวก \n abs(-5.5) ---> 5.5", inline=False)
