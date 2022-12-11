@@ -5,7 +5,7 @@ import youtube_dl
 import datetime
 from song import*
 
-TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.GGbOS0.5ZIYK1KSP3g8NEwBkdLyCqKX1-3wsqPBQ_9k1I'
+TOKEN = '-'
 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
