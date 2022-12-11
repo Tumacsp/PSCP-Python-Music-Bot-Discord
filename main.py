@@ -7,7 +7,7 @@ from song import*
 
 
 # token bot
-TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.G3p3TT.RXKLQOI_0kKqr7HiLvUaNwVsbLeWqrf1pXIdFo'
+TOKEN = ''
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
