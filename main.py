@@ -268,7 +268,7 @@ async def mathcommand(ctx):
     embed.add_field(name="math.ceil() ", value="คืนค่าโดยการปัดเลขขึ้น \n math.celi(5.6) ---> 6", inline=False)
     embed.add_field(name="math.floor() ", value="คืนค่าโดยการปัดเลขลง \n math.celi(5.6) ---> 5", inline=False)
     embed.add_field(name=" math.sqrt() ", value="คืนค่ารากที่สอง \n math.sqrt(64) ---> 8.00", inline=False)
-    embed.add_field(name="อยากรู้คำสั่ง String Methods เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_ref_string.asp", inline=False)
+    embed.add_field(name="อยากรู้คำสั่ง Math เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_math.asp", inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
 
