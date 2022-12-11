@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from discord import Embed
 import youtube_dl
+import datetime
 from song import*
 
 TOKEN = ''
@@ -29,6 +30,27 @@ async def on_member_join(member):
     embed.add_field(name="หากสนใจเรื่องอะไร ❓", value="👉  พิมพ์ '...py' หรือ '/help ' ", inline=False)
     embed.set_image(url='https://media.tenor.com/LDuF2jVabwoAAAAC/banner-welcome.gif') # รูป welcome
     await channel.send(embed=embed)
+
+@bot.event
+async def on_member_remove(member):
+    channel = bot.get_channel(721276405480030321) # ส่งที่ห้องไอดีนี้
+    # await channel.send()
+    embed = discord.Embed(title=f"👋 Bye Bye {member}  \n🎊 Bye", description=f"Bye {member.mention}! Enjoy your stay here.", color=0xFF0046)
+    await channel.send(embed=embed)
+
+@bot.event
+async def on_voice_state_update(member, before, after): #แจ้งคนเข้า- ออก วอย แชท
+    channel = bot.get_channel(1039567269992341554)
+    tmp1 = datetime.datetime.now()
+    txtsend = tmp1.strftime(" %d %B %Y %H:%M:%S")
+    if before.channel != after.channel:
+        if after.channel is not None and after.channel.id == int(721276405480030322):
+            embed = discord.Embed(title=f"👋 {member} Join \n  {txtsend}", color=0xFF0046)
+            await channel.send(embed=embed)
+    if before.channel != after.channel:
+        if before.channel is not None and before.channel.id == int(721276405480030322):
+            embed = discord.Embed(title=f"👋 {member} Leave \n  {txtsend}", color=0x99FF99)
+            await channel.send(embed=embed)
 
 
 @bot.tree.command(name="hello", description="Replies with Hello")
