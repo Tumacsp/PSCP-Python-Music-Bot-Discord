@@ -70,7 +70,7 @@ async def on_message(message):
     txtsend = tmp1.strftime(" %d %B %Y %H:%M:%S")
     if mes_user == "hello":
         await message.channel.send('สวัสดี')
-    elif mes_user[0:] == "กี่โมง":
+    elif 'กี่โมง' in mes_user:
         await message.channel.send(txtsend)
     elif mes_user == 'hi bot':
         await message.channel.send('Hello, ' + str(message.author.name)) # เรียกชื่อผู้ใช้ + hello
