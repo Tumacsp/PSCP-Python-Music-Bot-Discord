@@ -326,9 +326,14 @@ async def musiccommand(ctx):
 async def pythoncommand(ctx):
     embed = Embed(title="Help me! - Help Python Function", color=0xff2450)
     embed.add_field(name="Bot commands", value="```/helppy```", inline=True)
-    embed.add_field(name="Python Lists", value="```/listpy```", inline=True)
+    embed.add_field(name="Think Python book", value="```/bookpy```", inline=True)
+    embed.add_field(name="Start Python", value="```/startpy```", inline=True)
+    embed.add_field(name="StackOverFlow web", value="```/stack_of```", inline=True)
+    embed.add_field(name="Python Lists commands", value="```/lstpy```", inline=True)
+    embed.add_field(name="Python Strings commands", value="```/strmeth_py```", inline=True)
+    embed.add_field(name="Python Set commands", value="```/setmeth_py```", inline=True)
+    embed.add_field(name="Python Math commands", value="```/math_py```", inline=True)
     embed.add_field(name="Python Dictionaries", value="```/dictpy```", inline=True)
-    embed.add_field(name="Python Sets", value="```/setpy```", inline=True)
     embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
     await ctx.response.send_message(embed=embed)
 
