@@ -7,7 +7,7 @@ import requests
 
 # token bot
 TOKEN = '-'
-
+#ดีจ้า
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
