@@ -31,6 +31,7 @@ async def on_member_join(member):
     embed.add_field(name="หากสนใจเรื่องอะไร ❓", value="พิมพ์ตามนี้เลย👇", inline=False)
     embed.add_field(name="Help Music", value="```/helpmusic```", inline=True)
     embed.add_field(name="Help Python", value="```/helppython```", inline=True)
+    embed.add_field(name="Help News", value="```/newstech```", inline=True)
     embed.set_image(url='https://media.tenor.com/LDuF2jVabwoAAAAC/banner-welcome.gif') # รูป welcome
     await channel.send(embed=embed)
 
