@@ -141,7 +141,7 @@ async def play(ctx, url):
     second = int(time%60)
 
     # Embed เล่นเพลง
-    embed = Embed(title="🎶Now playing🎶", color=0xFF0046)
+    embed = Embed(title="🎶Now Playing🎶", color=0xFF0046)
     embed.add_field(name=f"Music: {title}", value="—————————————————————————————", inline=False)
     embed.add_field(name="🕘| Duration", value=f"```0{minute}:{second} ```", inline=True)
     embed.add_field(name="👀| Views", value=f"```ดู {view} ครั้ง```", inline=True)
@@ -158,7 +158,12 @@ async def pause(ctx):  # หยุดเพลงไว้ก่อนเดี�
     voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
     if voice.is_playing():
         voice.pause()
-        await ctx.send("Paused ⏸")
+        # Embed หยุดเพลง
+        embed = Embed(title="🎶Now Pause🎶", color=0xFF0046)
+        embed.add_field(name='⏸️| Pause', value='type /resume to resume')
+        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/1039567269992341554/1051727418353778748/pause.png')
+        embed.set_footer(text='Bot Music Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
+        await ctx.channel.send(embed=embed)
     else:
         await ctx.send("ขณะนี้ไม่มีเพลงเล่นในห้องเสียง!❗")
 
@@ -168,7 +173,12 @@ async def resume(ctx):
     voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
     if voice.is_paused():
         voice.resume()
-        await ctx.send("Resume ⏯")
+        #embed เล่นต่อ
+        embed = Embed(title="🎶Now Resume🎶", color=0xFF0046)
+        embed.add_field(name='▶️| Resume', value='type /pause to pause')
+        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/1039567269992341554/1051727415153541180/play.png')
+        embed.set_footer(text='Bot Music Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
+        await ctx.channel.send(embed=embed)
     else:
         await ctx.send("ขณะนี้ไม่มีเพลงที่กำลังหยุดชั่วคราว❗")
 
@@ -177,14 +187,12 @@ async def resume(ctx):
 async def stop(ctx):
     voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
     voice.stop()
-    await ctx.send("Stop ⛔")
-
-
-
-
-
-
-
+    #embed เล่นต่อ
+    embed = Embed(title="🎶Now Stop🎶", color=0xFF0046)
+    embed.add_field(name='⏹️| Stop', value='type /play to play')
+    embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/1039567269992341554/1051727414604070952/stop.png')
+    embed.set_footer(text='Bot Music Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
+    await ctx.channel.send(embed=embed)
 
 
 
