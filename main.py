@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import Embed
 import youtube_dl
 import datetime
-
+import requests
 
 # token bot
 TOKEN = '-'
@@ -344,5 +344,32 @@ async def pythoncommand(ctx):
     embed.add_field(name="Python Dict commands", value="```/dictpy```", inline=True)
     embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
     await ctx.response.send_message(embed=embed)
+
+
+#//////////////// ข่าว ///////////////////
+@bot.tree.command(name="newstech", description="Replies with Hello")
+async def hellocommand(ctx):
+    # ข่าวรายวัน
+    url = "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=2557d02b638e4052abb76a63b4c02843"
+
+    response = requests.get(url)
+    news = response.json() 
+
+    for i in range(0,3):
+        title = news['articles'][i]['title']
+        des = news['articles'][i]['description']
+        url2 = news['articles'][i]['url']
+        img1 = news['articles'][i]['urlToImage']
+        time2 = news['articles'][i]['publishedAt']
+        embed = Embed(title="ข่าวรายวัน", color=0xFF0046)
+        embed.add_field(name="Technology News", value="—————————————————————————————", inline=False)
+        embed.add_field(name="| Title", value=f"```{title}```", inline=False)
+        embed.add_field(name="| Description", value=f"```{des}```", inline=False)
+        embed.add_field(name="| Date", value=f"```เมื่อ {time2}```", inline=False)
+        embed.add_field(name="| Read More", value=url2, inline=False)
+        embed.set_image(url=img1) # รูปเล็ก
+        embed.set_footer(text='Bot News Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
+        await ctx.channel.send(embed=embed)
+
 
 bot.run(TOKEN)
