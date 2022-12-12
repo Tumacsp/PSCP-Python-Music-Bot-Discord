@@ -7,7 +7,7 @@ from song import Songapi
 
 
 # token bot
-TOKEN = ''
+TOKEN = '-----'
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
