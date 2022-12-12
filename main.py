@@ -321,12 +321,10 @@ async def mathcommand(ctx):
 @bot.tree.command(name="helpmusic", description="Bot commands")
 async def musiccommand(ctx):
     embed = Embed(title="Help me! - Help Music", color=0xff2450)
-    embed.add_field(name="Bot commands", value="```/help```", inline=True)
-    embed.add_field(name="Hello", value="```/hello```", inline=True)
-    embed.add_field(name="Bot is cool.", value="```/bot```", inline=True)
     embed.add_field(name="play music", value="```/play```", inline=True)
     embed.add_field(name="stop music", value="```/stop```", inline=True)
     embed.add_field(name="pause music", value="```/pause```", inline=True)
+    embed.add_field(name="resume music", value="```/resume```", inline=True)
     embed.add_field(name="Bot leave", value="```/leave```", inline=True)
     embed.add_field(name="Bot join", value="```/join```", inline=True)
     embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
@@ -336,7 +334,6 @@ async def musiccommand(ctx):
 @bot.tree.command(name="helppython", description="Bot commands")
 async def pythoncommand(ctx):
     embed = Embed(title="Help me! - Help Python Function", color=0xff2450)
-    embed.add_field(name="Bot commands", value="```/helppy```", inline=True)
     embed.add_field(name="Think Python book", value="```/bookpy```", inline=True)
     embed.add_field(name="Start Python", value="```/startpy```", inline=True)
     embed.add_field(name="StackOverFlow web", value="```/stack_of```", inline=True)
