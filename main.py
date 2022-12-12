@@ -308,6 +308,22 @@ async def mathcommand(ctx):
     await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
 
 
+# Python Dictionary
+@bot.tree.command(name="dictpy", description="Bot commands")
+async def mathcommand(ctx):
+    embed = Embed(title="Dictionaries", description="ประเภทข้อมูลที่เก็บข้อมูลในรูปแบบคู่ของ Key และ Value", color=0xFF0046)
+    embed.add_field(name='.clear()', value="ลบองค์ประกอบทั้งหมดออกจาก dict ", inline=False)
+    embed.add_field(name='.items()', value="ส่งกลับคู่key-value ของdict เป็น tuples", inline=False)
+    embed.add_field(name='.keys()', value="ส่งกลับ key ของdict", inline=False)
+    embed.add_field(name='.pop()', value="ลบข้อมูลตามตำแหน่งที่ระบุไว้", inline=False)
+    embed.add_field(name='.update()', value="อัปเดต dict ด้วยคู่key-value ที่ระบุไว้", inline=False)
+    embed.add_field(name='.values()', value="ส่งกลับ values ของdict", inline=False)
+    embed.add_field(name="อยากรู้คำสั่ง Dictionary Methods เพิ่มเติมคลิกดูได้ที่นี่ ", value="👉 https://www.w3schools.com/python/python_dictionaries_methods.asp", inline=False)
+    embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
+    await ctx.response.send_message(embed=embed)
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
+
+
 
 
 
@@ -341,7 +357,7 @@ async def pythoncommand(ctx):
     embed.add_field(name="Python Strings commands", value="```/strmeth_py```", inline=True)
     embed.add_field(name="Python Set commands", value="```/setmeth_py```", inline=True)
     embed.add_field(name="Python Math commands", value="```/math_py```", inline=True)
-    embed.add_field(name="Python Dictionaries", value="```/dictpy```", inline=True)
+    embed.add_field(name="Python Dict commands", value="```/dictpy```", inline=True)
     embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
     await ctx.response.send_message(embed=embed)
 
