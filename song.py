@@ -12,6 +12,7 @@ bot = commands.Bot(command_prefix="/", intents= discord.Intents.all())
 ydl_opts = {'format': 'bestaudio'}
 ffmpeg_options = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 # แก้บอทเล่นเพลงไม่จบ
+
 class Songapi:
     async def play(ctx, url):
         # ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
@@ -41,21 +42,17 @@ class Songapi:
         embed.set_footer(text='Bot Music Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
         await ctx.channel.send(embed=embed)
 
-
-
     # หยุดเพลง
     async def pause(ctx):  # หยุดเพลงไว้ก่อนเดี๋ยวฟังต่อนะ
         voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
-        if voice.is_playing():
-            voice.pause()
-            # Embed หยุดเพลง
-            embed = Embed(title="🎶Now Pause🎶", color=0xFF0046)
-            embed.add_field(name='⏸️| Pause', value='type /resume to resume')
-            embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/1039567269992341554/1051727418353778748/pause.png')
-            embed.set_footer(text='Bot Music Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
-            await ctx.channel.send(embed=embed)
-        else:
-            await ctx.send("ขณะนี้ไม่มีเพลงเล่นในห้องเสียง!❗")
+        voice.pause()
+        # Embed หยุดเพลง
+        embed = Embed(title="🎶Now Pause🎶", color=0xFF0046)
+        embed.add_field(name='⏸️| Pause', value='type /resume to resume')
+        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/1039567269992341554/1051727418353778748/pause.png')
+        embed.set_footer(text='Bot Music Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
+        await ctx.channel.send(embed=embed)
+
 
     # เล่นต่อหลังหยุดเพลง
     async def resume(ctx):

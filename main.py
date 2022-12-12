@@ -7,7 +7,7 @@ from song import Songapi
 
 
 # token bot
-TOKEN = '-'
+TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.GYntZy.BwmYddyPuqpXXhy9VeYjwpvftSW6FMlUfhDi_o'
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
@@ -124,8 +124,8 @@ async def play(ctx,* ,search: str):
 
 # หยุดเพลง
 @bot.command()
-async def pause(ctx,* ,search: str):
-    await Songapi.pause(ctx,search)
+async def pause(ctx):
+    await Songapi.pause(ctx)
 
 # เล่นต่อหลังหยุดเพลง
 @bot.command()
