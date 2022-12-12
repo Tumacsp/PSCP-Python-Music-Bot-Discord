@@ -76,17 +76,9 @@ async def on_message(message):
     await bot.process_commands(message) # ทำคำสั่ง event แล้วไปทำคำสั่ง bot command ต่อ
 
 
-
-
 @bot.tree.command(name="hello", description="Replies with Hello")
 async def hellocommand(ctx):
     await ctx.response.send_message("Hello It's me BUT DISCORD")
-
-
-
-
-
-
 
 
 # เรียกบอทเข้าห้องคุย ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
@@ -148,8 +140,6 @@ async def play(ctx, url):
     embed.set_thumbnail(url=thumb) # รูปเล็ก
     embed.set_footer(text='Bot Music Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
     await ctx.channel.send(embed=embed)
-
-
 
 # หยุดเพลง
 @bot.command()
@@ -227,7 +217,6 @@ async def startcommand(ctx):
     await ctx.channel.send(file=discord.File('img/testpy.png'))
     await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
    
-
 
 # StackOverFlow
 @bot.tree.command(name="stack_of", description="เว็บไซต์ StackOverFlow") 
@@ -322,8 +311,6 @@ async def mathcommand(ctx):
     embed.set_thumbnail(url='https://i.imgur.com/Yn64sH9.png')
     await ctx.response.send_message(embed=embed)
     await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
-
-
 
 
 
