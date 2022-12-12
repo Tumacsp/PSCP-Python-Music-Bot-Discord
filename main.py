@@ -3,11 +3,10 @@ from discord.ext import commands
 from discord import Embed
 import youtube_dl
 import datetime
-from song import Songapi
-
+import requests
 
 # token bot
-TOKEN = '-----'
+TOKEN = '-'
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
@@ -77,17 +76,9 @@ async def on_message(message):
     await bot.process_commands(message) # ทำคำสั่ง event แล้วไปทำคำสั่ง bot command ต่อ
 
 
-
-
 @bot.tree.command(name="hello", description="Replies with Hello")
 async def hellocommand(ctx):
     await ctx.response.send_message("Hello It's me BUT DISCORD")
-
-
-
-
-
-
 
 
 # เรียกบอทเข้าห้องคุย ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
@@ -117,15 +108,53 @@ async def leave(ctx):  # Leave ออกจากห้องคุยเสี�
 
 # ////////////// เล่นเพลง //////////////////////
 
-@bot.command(pass_context=True)
-async def play(ctx,* ,search: str):
-    await Songapi.play(ctx,search)
+ydl_opts = {'format': 'bestaudio'}
+ffmpeg_options = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+# แก้บอทเล่นเพลงไม่จบ
 
+@bot.command(pass_context=True)
+async def play(ctx, url):
+    # ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
+    voice = ctx.voice_client # การเชื่อมต่อเสียงผู้ใช้
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        file = ydl.extract_info(url, download=False) # ไม่ได้ download
+        url = file['formats'][0]['url'] #ลิ้งเพลง
+    voice.play(discord.FFmpegPCMAudio(url, **ffmpeg_options))
+    voice.is_playing() # เล่นเพลง
+        
+    thumb = file['thumbnail'] # รูปเพลง
+    title = file['title'] #ชื่อเพลง
+    view = file['view_count'] # ยอดวิว
+    date = file['upload_date'] # วันเวลา
+    time = file['duration'] #เวลาเพลง
+    # คำนวณเวลาเพลง
+    minute= int(time/60)
+    second = int(time%60)
+
+    # Embed เล่นเพลง
+    embed = Embed(title="🎶Now Playing🎶", color=0xFF0046)
+    embed.add_field(name=f"Music: {title}", value="—————————————————————————————", inline=False)
+    embed.add_field(name="🕘| Duration", value=f"```0{minute}:{second} ```", inline=True)
+    embed.add_field(name="👀| Views", value=f"```ดู {view} ครั้ง```", inline=True)
+    embed.add_field(name="📅| Date", value=f"```เมื่อ {date}```", inline=True)
+    embed.set_thumbnail(url=thumb) # รูปเล็ก
+    embed.set_footer(text='Bot Music Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
+    await ctx.channel.send(embed=embed)
 
 # หยุดเพลง
 @bot.command()
-async def pause(ctx):
-    await Songapi.pause(ctx)
+async def pause(ctx):  # หยุดเพลงไว้ก่อนเดี๋ยวฟังต่อนะ
+    voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+    if voice.is_playing():
+        voice.pause()
+        # Embed หยุดเพลง
+        embed = Embed(title="🎶Now Pause🎶", color=0xFF0046)
+        embed.add_field(name='⏸️| Pause', value='type /resume to resume')
+        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/1039567269992341554/1051727418353778748/pause.png')
+        embed.set_footer(text='Bot Music Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
+        await ctx.channel.send(embed=embed)
+    else:
+        await ctx.send("ขณะนี้ไม่มีเพลงเล่นในห้องเสียง!❗")
 
 # เล่นต่อหลังหยุดเพลง
 @bot.command()
@@ -153,6 +182,7 @@ async def stop(ctx):
     embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/1039567269992341554/1051727414604070952/stop.png')
     embed.set_footer(text='Bot Music Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
     await ctx.channel.send(embed=embed)
+
 
 
 
@@ -187,7 +217,6 @@ async def startcommand(ctx):
     await ctx.channel.send(file=discord.File('img/testpy.png'))
     await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
    
-
 
 # StackOverFlow
 @bot.tree.command(name="stack_of", description="เว็บไซต์ StackOverFlow") 
@@ -287,19 +316,15 @@ async def mathcommand(ctx):
 
 
 
-
-
 #//////////////// เมนู Help ///////////////////
 
 @bot.tree.command(name="helpmusic", description="Bot commands")
 async def musiccommand(ctx):
     embed = Embed(title="Help me! - Help Music", color=0xff2450)
-    embed.add_field(name="Bot commands", value="```/help```", inline=True)
-    embed.add_field(name="Hello", value="```/hello```", inline=True)
-    embed.add_field(name="Bot is cool.", value="```/bot```", inline=True)
     embed.add_field(name="play music", value="```/play```", inline=True)
     embed.add_field(name="stop music", value="```/stop```", inline=True)
     embed.add_field(name="pause music", value="```/pause```", inline=True)
+    embed.add_field(name="resume music", value="```/resume```", inline=True)
     embed.add_field(name="Bot leave", value="```/leave```", inline=True)
     embed.add_field(name="Bot join", value="```/join```", inline=True)
     embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
@@ -309,7 +334,6 @@ async def musiccommand(ctx):
 @bot.tree.command(name="helppython", description="Bot commands")
 async def pythoncommand(ctx):
     embed = Embed(title="Help me! - Help Python Function", color=0xff2450)
-    embed.add_field(name="Bot commands", value="```/helppy```", inline=True)
     embed.add_field(name="Think Python book", value="```/bookpy```", inline=True)
     embed.add_field(name="Start Python", value="```/startpy```", inline=True)
     embed.add_field(name="StackOverFlow web", value="```/stack_of```", inline=True)
@@ -320,5 +344,32 @@ async def pythoncommand(ctx):
     embed.add_field(name="Python Dict commands", value="```/dictpy```", inline=True)
     embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
     await ctx.response.send_message(embed=embed)
+
+
+#//////////////// ข่าว ///////////////////
+@bot.tree.command(name="newstech", description="Replies with Hello")
+async def hellocommand(ctx):
+    # ข่าวรายวัน
+    url = "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=2557d02b638e4052abb76a63b4c02843"
+
+    response = requests.get(url)
+    news = response.json() 
+
+    for i in range(0,3):
+        title = news['articles'][i]['title']
+        des = news['articles'][i]['description']
+        url2 = news['articles'][i]['url']
+        img1 = news['articles'][i]['urlToImage']
+        time2 = news['articles'][i]['publishedAt']
+        embed = Embed(title="ข่าวรายวัน", color=0xFF0046)
+        embed.add_field(name="Technology News", value="—————————————————————————————", inline=False)
+        embed.add_field(name="| Title", value=f"```{title}```", inline=False)
+        embed.add_field(name="| Description", value=f"```{des}```", inline=False)
+        embed.add_field(name="| Date", value=f"```เมื่อ {time2}```", inline=False)
+        embed.add_field(name="| Read More", value=url2, inline=False)
+        embed.set_image(url=img1) # รูปเล็ก
+        embed.set_footer(text='Bot News Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
+        await ctx.channel.send(embed=embed)
+
 
 bot.run(TOKEN)
