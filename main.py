@@ -348,8 +348,8 @@ async def pythoncommand(ctx):
 
 
 #//////////////// ข่าว ///////////////////
-@bot.tree.command(name="newstech", description="Replies with Hello")
-async def hellocommand(ctx):
+@bot.tree.command(name="newstech", description="Technology News")
+async def newscommand(ctx):
     # ข่าวรายวัน
     url = "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=2557d02b638e4052abb76a63b4c02843"
 
