@@ -352,22 +352,22 @@ async def newscommand(ctx):
     # ข่าวรายวัน
     url = "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=2557d02b638e4052abb76a63b4c02843"
 
-    response = requests.get(url)
-    news = response.json() 
+    response = requests.get(url) #ดึงข้อมูลจาก API
+    news = response.json()  # อ่านไฟล์ JSON
 
     for i in range(0,3):
-        title = news['articles'][i]['title']
-        des = news['articles'][i]['description']
-        url2 = news['articles'][i]['url']
-        img1 = news['articles'][i]['urlToImage']
-        time2 = news['articles'][i]['publishedAt']
+        title = news['articles'][i]['title'] #หัวข่าว
+        des = news['articles'][i]['description'] #รายละเอียด
+        url2 = news['articles'][i]['url'] # ลิ้งข่าว
+        img1 = news['articles'][i]['urlToImage'] # รูปประกอบข่าว
+        time2 = news['articles'][i]['publishedAt'] # เวลา
         embed = Embed(title="ข่าวรายวัน", color=0xFF0046)
         embed.add_field(name="Technology News", value="—————————————————————————————", inline=False)
         embed.add_field(name="| Title", value=f"```{title}```", inline=False)
         embed.add_field(name="| Description", value=f"```{des}```", inline=False)
         embed.add_field(name="| Date", value=f"```เมื่อ {time2}```", inline=False)
         embed.add_field(name="| Read More", value=url2, inline=False)
-        embed.set_image(url=img1) # รูปเล็ก
+        embed.set_image(url=img1)
         embed.set_footer(text='Bot News Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
         await ctx.channel.send(embed=embed)
 
