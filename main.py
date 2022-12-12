@@ -316,7 +316,6 @@ async def mathcommand(ctx):
 
 
 
-
 #//////////////// เมนู Help ///////////////////
 
 @bot.tree.command(name="helpmusic", description="Bot commands")
@@ -347,7 +346,7 @@ async def pythoncommand(ctx):
     await ctx.response.send_message(embed=embed)
 
 
-#//////////////// ข่าว ///////////////////
+#//////////////// ข่าว Technology ///////////////////
 @bot.tree.command(name="newstech", description="Technology News")
 async def newscommand(ctx):
     # ข่าวรายวัน
