@@ -24,6 +24,11 @@
 
 
 # Setup
-## Discord Installing <br>
+### Discord Installing <br>
 **คลิกที่นี่ -** https://pypi.org/project/discord.py/ <br>
     ```pip install discord.py```
+
+### youtube_dl Installing <br>
+**คลิกที่นี่ -** https://pypi.org/project/youtube_dl/ <br>
+    ```pip install youtube_dl```
+
