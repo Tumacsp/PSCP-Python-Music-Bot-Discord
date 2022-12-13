@@ -4,10 +4,10 @@ from discord import Embed
 import youtube_dl
 import datetime
 import random
-
+import requests
 
 # token bot
-TOKEN = '-'
+TOKEN = ''
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
@@ -34,6 +34,7 @@ async def on_member_join(member):
     embed.add_field(name="หากสนใจเรื่องอะไร ❓", value="พิมพ์ตามนี้เลย👇", inline=False)
     embed.add_field(name="Help Music", value="```/helpmusic```", inline=True)
     embed.add_field(name="Help Python", value="```/helppython```", inline=True)
+    embed.add_field(name="Help News", value="```/newstech```", inline=True)
     embed.set_image(url='https://media.tenor.com/LDuF2jVabwoAAAAC/banner-welcome.gif') # รูป welcome
     await channel.send(embed=embed)
 
@@ -368,7 +369,6 @@ async def mathcommand(ctx):
 
 
 
-
 #//////////////// เมนู Help ///////////////////
 
 @bot.tree.command(name="helpmusic", description="Bot commands")
@@ -397,5 +397,32 @@ async def pythoncommand(ctx):
     embed.add_field(name="Python Dict commands", value="```/dictpy```", inline=True)
     embed.set_thumbnail(url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png')
     await ctx.response.send_message(embed=embed)
+
+
+#//////////////// ข่าว Technology ///////////////////
+@bot.tree.command(name="newstech", description="Technology News")
+async def newscommand(ctx):
+    # ข่าวรายวัน
+    url = "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=2557d02b638e4052abb76a63b4c02843"
+
+    response = requests.get(url) #ดึงข้อมูลจาก API
+    news = response.json()  # อ่านไฟล์ JSON
+
+    for i in range(0,3):
+        title = news['articles'][i]['title'] #หัวข่าว
+        des = news['articles'][i]['description'] #รายละเอียด
+        url2 = news['articles'][i]['url'] # ลิ้งข่าว
+        img1 = news['articles'][i]['urlToImage'] # รูปประกอบข่าว
+        time2 = news['articles'][i]['publishedAt'] # เวลา
+        embed = Embed(title="ข่าวรายวัน", color=0xFF0046)
+        embed.add_field(name="Technology News", value="—————————————————————————————", inline=False)
+        embed.add_field(name="| Title", value=f"```{title}```", inline=False)
+        embed.add_field(name="| Description", value=f"```{des}```", inline=False)
+        embed.add_field(name="| Date", value=f"```เมื่อ {time2}```", inline=False)
+        embed.add_field(name="| Read More", value=url2, inline=False)
+        embed.set_image(url=img1)
+        embed.set_footer(text='Bot News Mode',icon_url='https://media.discordapp.net/attachments/1039567269992341554/1051132242577084516/1.1.png') # footer
+        await ctx.channel.send(embed=embed)
+
 
 bot.run(TOKEN)
