@@ -31,3 +31,10 @@
 **คลิกที่นี่ -** https://pypi.org/project/youtube_dl/ <br>
     ```pip install youtube_dl```
 
+### requests Installing <br>
+**คลิกที่นี่ -** https://pypi.org/project/requests/ <br>
+    ```pip install requests```
+
+### Download FFmpeg <br>
+FFmpeg only provides source code. Below are some links that provide it already compiled and ready to go. <br>
+**คลิกที่นี่ -** https://ffmpeg.org/download.html <br>
