@@ -23,7 +23,7 @@
 
 
 
-#Setup
+# Setup
 Discord Installing
 https://pypi.org/project/discord.py/
     pip install discord.py
