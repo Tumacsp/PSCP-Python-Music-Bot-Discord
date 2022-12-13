@@ -7,7 +7,7 @@ import random
 import requests
 
 # token bot
-TOKEN = ''
+TOKEN = 'tokenhere'
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
