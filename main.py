@@ -254,7 +254,7 @@ async def bookcommand(ctx):
     embed.set_image(url='https://i.imgur.com/qYPNY8d.png')
     await ctx.response.send_message(embed=embed)
     # embed คือป้าย ทำให้การเรียกใช้งานดูสวย ดูดีมากขึ้น
-    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /help...')
+    await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
 
 
 # ขั้นตอนการเขียนโปรแกรม Python
