@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord import Embed
 import youtube_dl
 import datetime
+import random
 
 
 # token bot
@@ -11,7 +12,9 @@ TOKEN = '-'
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
-
+txtquiz = []
+txtquizhint = []
+txtcheck = []
 
 # คำสั่งที่บอกว่า bot พร้อมใช้งานแล้ว
 @bot.event
@@ -60,6 +63,43 @@ async def on_voice_state_update(member, before, after):
             embed = discord.Embed(title=f"👋 {member.name} Leave \n  {txtsend}", color=0xFF0046)
             await channel.send(embed=embed)
 
+#เกมท้ายคำ
+@bot.tree.command(name="game", description="mos")
+async def gamecommand(ctx, txt:str):
+    txt = txt.lower()
+    txtcheck.append(txt)
+    for i in txt:
+        txtquiz.append(i)
+        txtquizhint.append(i)
+    for i in range(len(txtquiz)//2):
+        ran = random.randint(0, len(txtquiz)-1)
+        txtquizhint.pop(ran)
+        txtquizhint.insert(ran, '#')
+    print(txtcheck)
+    embed = discord.Embed(title=f"GAME", description=f"ท้ายคำใน List.", color=0xFF0046)
+    embed.add_field(name="HINT", value=txtquizhint, inline=False)
+    embed.add_field(name="เล่นได้ที่ละครั้ง เกมจะรีเซ็ตเมื่อตอบถูกนะ", value="ถ้ามยอมไม่ไหวให้ใช้ /reset นะครับ", inline=True)
+    await ctx.response.send_message(embed=embed)
+
+@bot.tree.command(name="reset", description="reset") #รีเซ็ตเกม
+async def resetgame(ctx):
+    txtquiz.clear()
+    txtquizhint.clear()
+    txtcheck.clear()
+    print(txtquiz)
+    await ctx.response.send_message("gamereset")
+
+def check(mes_user:str): #คืนค่าคำตอบเกม
+    tempthai = "อยู่ตำแหน่งที่"
+    temp = ""
+    if mes_user in txtquiz and txtquiz.count(mes_user) == 1:
+        return "%s %s %s"%(mes_user, tempthai, txtquiz.index(mes_user))
+    if txtquiz.count(mes_user) > 1 and mes_user in txtquiz:
+        for i in range(0,len(txtquiz)):
+            if txtquiz[i] == mes_user:
+                temp += "%s "%str(i)
+        return "%s %s %s"%(mes_user, tempthai, temp)
+
 
 # คำสั่ง chatbot เมื่อพิมพ์อะไรบางอย่างแล้ว bot จะตอบกลับมา
 @bot.event
@@ -73,12 +113,25 @@ async def on_message(message):
         await message.channel.send(txtsend)
     elif mes_user == 'hi bot':
         await message.channel.send('Hello, ' + str(message.author.name)) # เรียกชื่อผู้ใช้ + hello
+    elif mes_user in txtquiz: #เช็คค่าถ้าพิมถูก
+        test = check(mes_user)
+        embed = discord.Embed(title=f"Yes", description="", color=0xCCFF00)
+        embed.add_field(name="อยู่ตำแหน่งที่", value=test, inline=False)
+        await message.channel.send(embed=embed)
+    elif mes_user in txtcheck:#ถ้าตอบถูก
+        embed = discord.Embed(title=f"GAME WIN", description=f"!!!======!!!", color=0x99FF99)
+        embed.add_field(name="คำนั้นคือ", value=txtcheck[0], inline=False)
+        await message.channel.send(embed=embed)
+        txtquiz.clear()
+        txtquizhint.clear()
+        txtcheck.clear()
     await bot.process_commands(message) # ทำคำสั่ง event แล้วไปทำคำสั่ง bot command ต่อ
 
 
 @bot.tree.command(name="hello", description="Replies with Hello")
 async def hellocommand(ctx):
     await ctx.response.send_message("Hello It's me BUT DISCORD")
+
 
 
 # เรียกบอทเข้าห้องคุย ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
