@@ -10,7 +10,7 @@ import requests
 TOKEN = 'tokenhere'
 
 
-# กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot 
+# กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 txtquiz = []
 txtquizhint = []
@@ -368,7 +368,6 @@ async def mathcommand(ctx):
 
 
 
-
 #//////////////// เมนู Help ///////////////////
 
 @bot.tree.command(name="helpmusic", description="Bot commands")
@@ -400,6 +399,7 @@ async def pythoncommand(ctx):
 
 
 #//////////////// ข่าว Technology ///////////////////
+
 @bot.tree.command(name="newstech", description="Technology News")
 async def newscommand(ctx):
     # ข่าวรายวัน
