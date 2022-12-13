@@ -25,5 +25,5 @@
 
 # Setup
 Discord Installing
-https://pypi.org/project/discord.py/
+คลิกที่นี่ - https://pypi.org/project/discord.py/
     pip install discord.py
