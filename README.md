@@ -19,5 +19,3 @@
 สามารถเรียกดูข่าว Technology จากต่างประเทศ ในรูปแบบรายวัน ด้วยคำสั่ง /newstech
 
 สามารถเล่นเกมทายคำกับเพื่อนๆได้ /game (คำทาย)
-
-Link เอกสารประกอบการใช้งาน และ ผลลัพธ์: https://docs.google.com/document/d/1HEJQ3_sVu5AfNA6HUEExaxV19yg58skKfKC_YoTejCk/edit?usp=sharing 
