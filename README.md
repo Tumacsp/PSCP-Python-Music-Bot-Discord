@@ -19,3 +19,11 @@
 สามารถเรียกดูข่าว Technology จากต่างประเทศ ในรูปแบบรายวัน ด้วยคำสั่ง /newstech
 
 สามารถเล่นเกมทายคำกับเพื่อนๆได้ /game (คำทาย)
+
+
+
+
+#Setup
+Discord Installing
+https://pypi.org/project/discord.py/
+    pip install discord.py
