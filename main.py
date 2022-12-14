@@ -138,7 +138,7 @@ async def hellocommand(ctx):
 
 # เรียกบอทเข้าห้องคุย ถ้าผู้ใช้ไม่ได้อยู่ในห้อง จะเล่นเพลงไม่ได้
 @bot.command()
-async def join(ctx):  # Join เออกจากห้องคุยเสียงของคนที่อยู่ใช้คำสั่ง
+async def join(ctx):  # Join เข้าห้องเสียงของคนที่อยู่ใช้คำสั่ง
     if ctx.author.voice:
         channel = ctx.message.author.voice.channel
         await channel.connect()
@@ -149,7 +149,7 @@ async def join(ctx):  # Join เออกจากห้องคุยเสี
 
 # เรียกบอทออกห้องคุย
 @bot.command()
-async def leave(ctx):  # Leave ออกจากห้องคุยเสียง
+async def leave(ctx):  # Leave ออกจากห้องเสียงที่อยู่
     if ctx.voice_client:
         await ctx.guild.voice_client.disconnect()
     else:
@@ -239,7 +239,7 @@ async def stop(ctx):
 
 
 
-# /////////////// คำสั่ง python //////////////////
+# /////////////// ความรู้ คำสั่ง python เบื้องต้น //////////////////
 
 
 # เรียกหนังสือ Think Python
