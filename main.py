@@ -7,7 +7,7 @@ import random
 import requests
 
 # token bot
-TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.GqLSUy.cUq3Gn1BKyXJRfD18et1Vv7vzf3HQjXGRxj9LE'
+TOKEN = 'tokenhere'
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot
