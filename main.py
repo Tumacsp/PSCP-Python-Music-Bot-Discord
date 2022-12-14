@@ -7,7 +7,7 @@ import random
 import requests
 
 # token bot
-TOKEN = 'tokenhere'
+TOKEN = ''
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot
@@ -53,7 +53,7 @@ async def on_member_remove(member):
 #แจ้งคนเข้า- ออก วอย แชท
 @bot.event
 async def on_voice_state_update(member, before, after):
-    channel = bot.get_channel(1039567269992341554)
+    channel = bot.get_channel(1039567376162750475)
     tmp1 = datetime.datetime.now()
     txtsend = tmp1.strftime(" %d %B %Y %H:%M:%S")
     if before.channel != after.channel:
@@ -144,7 +144,7 @@ async def join(ctx):  # Join เออกจากห้องคุยเสี
         await channel.connect()
         await ctx.send("--- พร้อมเปิดเพลงให้คุณแล้ว ---")
     else:
-        # กรณีคนใช้คำสั่งไม่อยู่ในห้องเสียง555
+        # กรณีคนใช้คำสั่งไม่อยู่ในห้องเสียง
         await ctx.send("คุณไม่ได้อยู่ในห้องเสียง❌")
 
 # เรียกบอทออกห้องคุย
@@ -264,11 +264,10 @@ async def startcommand(ctx):
     embed.add_field(name="Let's write our first Python", value="ค้นหา python idle และพิมพ์คำสั่งแรก \n - print('Hello, World!')", inline=False)
     embed.add_field(name="ศึกษาเพิ่มเติมที่นี่!!", value="👉 https://www.w3schools.com/python/default.asp", inline=False)
     embed.set_thumbnail(url='https://logos-download.com/wp-content/uploads/2016/10/Python_logo_icon.png')
+    embed.set_image(url='https://files.realpython.com/media/hello_idle.294af1398cd8.png')
     await ctx.channel.send(embed=embed)
-
-    await ctx.channel.send(file=discord.File('img/testpy.png'))
     await ctx.channel.send('❓สนใจเรื่องอะไรอีก พิมพ์ /helppython')
-   
+
 
 # StackOverFlow
 @bot.tree.command(name="stack_of", description="เว็บไซต์ StackOverFlow") 
@@ -406,7 +405,7 @@ async def newscommand(ctx):
     response = requests.get(url) #ดึงข้อมูลจาก API
     news = response.json()  # อ่านไฟล์ JSON
 
-    for i in range(0,3):
+    for i in range(3,6):
         title = news['articles'][i]['title'] #หัวข่าว
         des = news['articles'][i]['description'] #รายละเอียด
         url2 = news['articles'][i]['url'] # ลิ้งข่าว
