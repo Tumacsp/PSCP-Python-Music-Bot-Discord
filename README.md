@@ -38,3 +38,6 @@
 ### Download FFmpeg <br>
 FFmpeg only provides source code. Below are some links that provide it already compiled and ready to go. <br>
 **คลิกที่นี่ -** https://ffmpeg.org/download.html <br>
+
+# วิธีการ Run
+<li>ใส่ Token เข้าไปในโค้ด และ กด Run ได้เลย</li>
