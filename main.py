@@ -7,11 +7,12 @@ import random
 import requests
 
 # token bot
-TOKEN = 'tokenhere'
+TOKEN = 'MTAzOTU2NzgzMzUxMzg1NzA4NQ.GqLSUy.cUq3Gn1BKyXJRfD18et1Vv7vzf3HQjXGRxj9LE'
 
 
 # กำหนดเครื่องหมายในการพิมพ์คำสั่งเรียก  bot
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
+
 txtquiz = []
 txtquizhint = []
 txtcheck = []
@@ -65,7 +66,7 @@ async def on_voice_state_update(member, before, after):
             await channel.send(embed=embed)
 
 #เกมท้ายคำ
-@bot.tree.command(name="game", description="mos")
+@bot.tree.command(name="game", description="เกมทายคำ")
 async def gamecommand(ctx, txt:str):
     txt = txt.lower()
     txtcheck.append(txt)
@@ -157,9 +158,6 @@ async def leave(ctx):  # Leave ออกจากห้องคุยเสี�
 
 
 
-
-
-
 # ////////////// เล่นเพลง //////////////////////
 
 ydl_opts = {'format': 'bestaudio'}
@@ -175,7 +173,7 @@ async def play(ctx, url):
         url = file['formats'][0]['url'] #ลิ้งเพลง
     voice.play(discord.FFmpegPCMAudio(url, **ffmpeg_options))
     voice.is_playing() # เล่นเพลง
-        
+
     thumb = file['thumbnail'] # รูปเพลง
     title = file['title'] #ชื่อเพลง
     view = file['view_count'] # ยอดวิว
